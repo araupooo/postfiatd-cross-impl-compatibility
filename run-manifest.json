@@ -1,0 +1,81 @@
+{
+ "pack": "Cross-Implementation Compatibility: postfiatd vs rippled 3.1.2",
+ "pinned_commit": "0085a1ff885d6a446369cf73a4430f75af22be55",
+ "rippled_commit": "3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c",
+ "rippled_tag": "3.1.2",
+ "counts": {
+  "rules": {
+   "total": 45,
+   "by_status": {
+    "VERIFIED": 38,
+    "SPECIFIED": 4,
+    "MODELLED": 2,
+    "UNTESTABLE": 1
+   }
+  },
+  "scenarios": {
+   "total": 13,
+   "runs": 18,
+   "matched": 5,
+   "diverged": 9,
+   "degraded": 2,
+   "incompatible": 2
+  },
+  "findings": {
+   "total": 12,
+   "by_severity": {
+    "HIGH": 3,
+    "LOW": 3,
+    "MEDIUM": 6
+   },
+   "by_status": {
+    "VERIFIED": 12
+   }
+  },
+  "claims": {
+   "total": 24,
+   "by_status": {
+    "MODELLED": 4,
+    "SPECIFIED": 2,
+    "UNTESTABLE": 2,
+    "VERIFIED": 16
+   }
+  },
+  "risks": {
+   "total": 14,
+   "by_severity": {
+    "HIGH": 3,
+    "LOW": 3,
+    "MEDIUM": 8
+   }
+  },
+  "gaps": 8
+ },
+ "probes": {
+  "passed": 13,
+  "total": 13
+ },
+ "results_sha256": "fb1d2e0b8a2e141fe6c74c9a4d586d95e4d7a2e7d003327f2f3059bba6f00879",
+ "matrix_sha256": "f59ec1789650bd9f94fab178bec94dc4291377ee509968317028d6435cf4771c",
+ "verify_digests_sha256": "38541af5b1e177b72a93960ab72298cbbdb2d0c13bd107e0856950c9c0e68cbc",
+ "verification": {
+  "excerpts": 44,
+  "source_files": 34,
+  "reference_files": 27
+ },
+ "reproductions": [
+  {
+   "label": "fresh-clone-1",
+   "log": "outputs/fresh-clone-run.log",
+   "sha256": "d1ecf48c2e2a9a94f8c770f73c80ec01620ec419a7b77d47e3e0a6cf7b4272df",
+   "status": "pass"
+  },
+  {
+   "label": "fresh-clone-2",
+   "log": "outputs/fresh-clone-2-run.log",
+   "sha256": "d1ecf48c2e2a9a94f8c770f73c80ec01620ec419a7b77d47e3e0a6cf7b4272df",
+   "status": "pass"
+  }
+ ],
+ "status": "SOURCE-DERIVED"
+}

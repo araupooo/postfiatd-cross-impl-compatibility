@@ -1,0 +1,88 @@
+{
+ "findings": [
+  {
+   "evidence": "R-03 (minCONSENSUS_PCT 67 vs 80, ConsensusParms.h:79, E01) + R-04 (ValidatorList.cpp:1897-1900, E02) + R-05 (amendment majority 67/100 vs 80/100, SystemParameters.h:85, E03) + threshold table: UNL 100 needs 67 vs 80 agreeing; UNL 35 needs 24 vs 28; UNL 21 needs 15 vs 17.",
+   "id": "F-01",
+   "severity": "HIGH",
+   "status": "VERIFIED",
+   "title": "The 67% quorum validates with 13 fewer agreeing validators out of 100 than rippled, and the tolerated Byzantine share rises from 20% to 33%"
+  },
+  {
+   "evidence": "R-31 (ttVALIDATOR_VOTE 1501, transactions.macro, E28) + R-32 (ltVALIDATOR_VOTE_STATS 0x008A, ledger_entries.macro, E29) + R-33 (applyValidatorVote, Change.cpp:552, E30) + R-13 (recordVote with signing hash as proof, RCLValidations.cpp:216, E11) + scenario S-06 run A (incompatible) and S-08 run A (incompatible).",
+   "id": "F-02",
+   "severity": "HIGH",
+   "status": "VERIFIED",
+   "title": "Validator votes are new consensus state: a postfiatd ledger containing ttVALIDATOR_VOTE and ltVALIDATOR_VOTE_STATS cannot be validated or replayed by rippled"
+  },
+  {
+   "evidence": "R-34 (Transactor.cpp:190-212, E31) + R-26 (exclusion cache on first validated ledger, LedgerMaster.cpp:290, E24) + R-37 (PF_AccountExclusion amendment, features.macro:45, E34) + scenario S-07 run A (diverged).",
+   "id": "F-03",
+   "severity": "HIGH",
+   "status": "VERIFIED",
+   "title": "Exclusion enforcement is a consensus-level account block: postfiatd rejects transactions from or to excluded accounts at preflight, rippled applies them normally, so the same transaction has different outcomes on the two implementations"
+  },
+  {
+   "evidence": "R-06 (RCLConsensus.cpp:709-728 vs rippled :704-728, E04) + scenario S-03 run A (diverged: median offset 0 s, mean offset 11 s) and run B (matched: all peers on time).",
+   "id": "F-04",
+   "severity": "MEDIUM",
+   "status": "VERIFIED",
+   "title": "Close-time offset is a weighted median in postfiatd and an arithmetic mean in rippled: one peer 120 seconds off moves the mean by 11 seconds and the median by 0"
+  },
+  {
+   "evidence": "R-07 (Consensus.h:1602-1613 vs rippled :1605-1616, E05) + scenario S-04 run A (diverged: postfiatd picks 1000, rippled picks 1005).",
+   "id": "F-05",
+   "severity": "LOW",
+   "status": "VERIFIED",
+   "title": "Close-time tie-break flips: among bins tied for the most votes the earliest wins in postfiatd and the latest wins in rippled, so the same votes pick different consensus close times"
+  },
+  {
+   "evidence": "R-08 (Consensus.h:1283-1294, E06) + scenario S-05 run A (diverged) and run B (matched at 90%).",
+   "id": "F-06",
+   "severity": "MEDIUM",
+   "status": "VERIFIED",
+   "title": "Pause-phase thresholds fall with the quorum (67/75/83/92 vs 80/85/90/95), so a network where 70% of validators moved on pauses in rippled and proceeds in postfiatd"
+  },
+  {
+   "evidence": "R-38 (features.macro:47-100, E35): 64 DefaultYes in postfiatd vs 28 in rippled; flipped names include AMM, Clawback, DID, Credentials, DynamicNFT, AMMv1_1, AMMv1_2, AMMv1_3, PreviousTxnID, PriceOracle, and EnforceNFTokenTrustlineV2.",
+   "id": "F-07",
+   "severity": "MEDIUM",
+   "status": "VERIFIED",
+   "title": "36 amendments flipped from DefaultNo to DefaultYes, so a fresh postfiatd network enables them by default where a fresh rippled network does not"
+  },
+  {
+   "evidence": "R-28 (STParsedJSON.h:29-34, E43) + R-44 (Serializer.cpp:230-250, E42) + R-10 (STValidation.h:59-92, E08) + scenario S-12 run A (diverged: 600-element array rejected by postfiatd, accepted by rippled).",
+   "id": "F-08",
+   "severity": "MEDIUM",
+   "status": "VERIFIED",
+   "title": "Parse hardening caps inputs rippled accepts: JSON arrays over 512 elements are rejected, negative variable-length sizes are rejected, and peer validations must be in canonical field order"
+  },
+  {
+   "evidence": "R-15 (Manifest.h:246-290, E13) + scenario S-13 run A (degraded: postfiatd keeps 1,000 of 1,500, rippled keeps all 1,500).",
+   "id": "F-09",
+   "severity": "MEDIUM",
+   "status": "VERIFIED",
+   "title": "Unlisted validator manifests are bounded at 1,000 in postfiatd with the oldest evicted; rippled keeps them unbounded, so a manifest flood grows its cache without limit"
+  },
+  {
+   "evidence": "R-23 (SHAMapNodeID.cpp:57-75, E20) + R-24/R-25 (ReplayMsgStatus + uint256 size checks, E22/E23) + R-39 (checkedAdd/checkedSub, MathUtilities.h:26-60, E36) + R-40 (tecPATH_DRY on strand overflow, Steps.h:526-575, E38) + scenario S-10 run A (degraded) and S-11 run A (diverged).",
+   "id": "F-10",
+   "severity": "MEDIUM",
+   "status": "VERIFIED",
+   "title": "Hostile inputs that assert, wrap, or conflate in rippled are clamped or returned as errors in postfiatd: SHAMap depths, replay responses, and balance arithmetic"
+  },
+  {
+   "evidence": "R-19 (Ledger.cpp:180-205, E15) + R-20 (SystemParameters.h:70-76, E17) + scenario S-09 run A (diverged) and run B (matched in standalone mode, where both derive from masterpassphrase).",
+   "id": "F-11",
+   "severity": "LOW",
+   "status": "VERIFIED",
+   "title": "Genesis ledgers are incompatible: networks 2025/2026 start from r4vhrMChCsaoFsBoCkRTRGUuc1njfr7bmA with earliest sequence 1, while rippled derives rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh with earliest sequence 32570"
+  },
+  {
+   "evidence": "R-09 (DisputedTx.h:117-132, E07) + R-16 (Change.cpp:344-350 vs rippled :314-320, E27) + R-01/R-02 (pin: 21 upstream commits to 3.1.2) + absence checks: TxQ.cpp, LoadFeeTrack.cpp, and LoadFeeTrack.h are absent from the 107-file diff list, so their behavior is byte-identical.",
+   "id": "F-12",
+   "severity": "LOW",
+   "status": "VERIFIED",
+   "title": "The matching core is preserved: fee escalation, load-fee tracking, the disputed-transaction stall test, and the amendment majority timestamp are identical, and the fork base is rippled 3.1.2 across 1,595 of 1,702 shared files"
+  }
+ ]
+}
