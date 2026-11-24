@@ -1,0 +1,850 @@
+{
+ "constants": {
+  "absolute_minimum_quorum_pct": 60,
+  "amendment_majority_postfiatd": 67,
+  "amendment_majority_rippled": 80,
+  "earliest_ledger_seq_postfiatd": 1,
+  "earliest_ledger_seq_rippled": 32570,
+  "fee_malformed_data": 2000,
+  "max_exclusion_list_size": 100,
+  "max_json_array_size": 512,
+  "max_json_depth": 64,
+  "max_untrusted_manifests": 1000,
+  "max_vl_length": 918744,
+  "min_consensus_pct_postfiatd": 67,
+  "min_consensus_pct_rippled": 80,
+  "pause_phase_thresholds_postfiatd": [
+   67,
+   75,
+   83,
+   92,
+   100
+  ],
+  "pause_phase_thresholds_rippled": [
+   80,
+   85,
+   90,
+   95,
+   100
+  ],
+  "shamap_leaf_depth": 64,
+  "validator_quorum_pct_postfiatd": 67,
+  "validator_quorum_pct_rippled": 80,
+  "validator_vote_stats_type": 138,
+  "validator_vote_tx_type": 1501
+ },
+ "constants_table": [
+  {
+   "class": "DIVERGE",
+   "item": "consensus quorum (minCONSENSUS_PCT)",
+   "postfiatd": 67,
+   "rippled": 80
+  },
+  {
+   "class": "DIVERGE",
+   "item": "amendment majority (post-fix)",
+   "postfiatd": "67/100",
+   "rippled": "80/100"
+  },
+  {
+   "class": "DIVERGE",
+   "item": "close-time offset method",
+   "postfiatd": "weighted median",
+   "rippled": "arithmetic mean"
+  },
+  {
+   "class": "DIVERGE",
+   "item": "close-time tie-break",
+   "postfiatd": "earliest wins",
+   "rippled": "latest wins"
+  },
+  {
+   "class": "DIVERGE",
+   "item": "pause phase thresholds",
+   "postfiatd": "67/75/83/92",
+   "rippled": "80/85/90/95"
+  },
+  {
+   "class": "DIVERGE",
+   "item": "genesis account (networks 2025/2026)",
+   "postfiatd": "r4vhrMChCsaoFsBoCkRTRGUuc1njfr7bmA",
+   "rippled": "rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh"
+  },
+  {
+   "class": "DIVERGE",
+   "item": "earliest ledger sequence",
+   "postfiatd": 1,
+   "rippled": 32570
+  },
+  {
+   "class": "DIVERGE",
+   "item": "system name",
+   "postfiatd": "postfiat",
+   "rippled": "ripple"
+  },
+  {
+   "class": "DIVERGE",
+   "item": "untrusted manifest cap",
+   "postfiatd": 1000,
+   "rippled": "unbounded"
+  },
+  {
+   "class": "DIVERGE",
+   "item": "exclusion list maximum",
+   "postfiatd": 100,
+   "rippled": "none"
+  },
+  {
+   "class": "DIVERGE",
+   "item": "JSON array element cap",
+   "postfiatd": 512,
+   "rippled": "none"
+  },
+  {
+   "class": "MATCH",
+   "item": "JSON nesting depth cap",
+   "postfiatd": 64,
+   "rippled": 64
+  },
+  {
+   "class": "MATCH",
+   "item": "variable-length field maximum",
+   "postfiatd": 918744,
+   "rippled": 918744
+  },
+  {
+   "class": "MATCH",
+   "item": "disputed-transaction stall test",
+   "postfiatd": "parameterized by minCONSENSUS_PCT",
+   "rippled": "parameterized by minCONSENSUS_PCT"
+  },
+  {
+   "class": "MATCH",
+   "item": "amendment majority timestamp",
+   "postfiatd": "parentCloseTime",
+   "rippled": "parentCloseTime"
+  },
+  {
+   "class": "MATCH",
+   "item": "fee escalation",
+   "postfiatd": "quadratic",
+   "rippled": "quadratic"
+  },
+  {
+   "class": "MATCH",
+   "item": "load-fee tracking",
+   "postfiatd": "identical",
+   "rippled": "identical"
+  },
+  {
+   "class": "DIVERGE",
+   "item": "validator vote transaction type",
+   "postfiatd": "ttVALIDATOR_VOTE (1501)",
+   "rippled": "absent"
+  },
+  {
+   "class": "DIVERGE",
+   "item": "validator vote stats ledger entry",
+   "postfiatd": "ltVALIDATOR_VOTE_STATS (0x008A)",
+   "rippled": "absent"
+  }
+ ],
+ "pack": "Cross-Implementation Compatibility: postfiatd vs rippled 3.1.2",
+ "pinned_commit": "0085a1ff885d6a446369cf73a4430f75af22be55",
+ "rippled_commit": "3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c",
+ "rippled_tag": "3.1.2",
+ "scenarios": [
+  {
+   "id": "S-01",
+   "runs": [
+    {
+     "events": [
+      {
+       "round": 0,
+       "text": "100 validators on the UNL; 70 agree on the ledger"
+      },
+      {
+       "round": 1,
+       "text": "quorum needed: postfiatd 67, rippled 80; 70 agreeing validates on postfiatd only"
+      }
+     ],
+     "kind": "quorum",
+     "label": "A",
+     "outcome": "diverged",
+     "params": {
+      "validators_agreeing": 70,
+      "validators_total": 100
+     },
+     "postfiatd": {
+      "quorum_needed": 67,
+      "validates": true
+     },
+     "reason": "different_result_same_input",
+     "rippled": {
+      "quorum_needed": 80,
+      "validates": false
+     },
+     "rounds": 1,
+     "title": "70 of 100 validators agree on the ledger"
+    },
+    {
+     "events": [
+      {
+       "round": 0,
+       "text": "100 validators on the UNL; 85 agree on the ledger"
+      },
+      {
+       "round": 1,
+       "text": "quorum needed: postfiatd 67, rippled 80; 85 agreeing validates on both"
+      }
+     ],
+     "kind": "quorum",
+     "label": "B",
+     "outcome": "matched",
+     "params": {
+      "validators_agreeing": 85,
+      "validators_total": 100
+     },
+     "postfiatd": {
+      "quorum_needed": 67,
+      "validates": true
+     },
+     "reason": "same_result_both_implementations",
+     "rippled": {
+      "quorum_needed": 80,
+      "validates": true
+     },
+     "rounds": 1,
+     "title": "85 of 100 validators agree on the ledger"
+    }
+   ],
+   "title": "Consensus quorum: 70 of 100 validators agree"
+  },
+  {
+   "id": "S-02",
+   "runs": [
+    {
+     "events": [
+      {
+       "round": 0,
+       "text": "an amendment holds 70% support for the full two-week majority window"
+      },
+      {
+       "round": 1,
+       "text": "70% support over 2 weeks: postfiatd enables the amendment, rippled does not enable it"
+      }
+     ],
+     "kind": "amendment",
+     "label": "A",
+     "outcome": "diverged",
+     "params": {
+      "validators_total": 100,
+      "votes_for_pct": 70,
+      "weeks": 2
+     },
+     "postfiatd": {
+      "enables": true,
+      "majority_pct": 67
+     },
+     "reason": "different_result_same_input",
+     "rippled": {
+      "enables": false,
+      "majority_pct": 80
+     },
+     "rounds": 1,
+     "title": "70% of validators vote for the amendment"
+    },
+    {
+     "events": [
+      {
+       "round": 0,
+       "text": "an amendment holds 85% support for the full two-week majority window"
+      },
+      {
+       "round": 1,
+       "text": "85% support over 2 weeks: postfiatd enables the amendment, rippled enables it"
+      }
+     ],
+     "kind": "amendment",
+     "label": "B",
+     "outcome": "matched",
+     "params": {
+      "validators_total": 100,
+      "votes_for_pct": 85,
+      "weeks": 2
+     },
+     "postfiatd": {
+      "enables": true,
+      "majority_pct": 67
+     },
+     "reason": "same_result_both_implementations",
+     "rippled": {
+      "enables": true,
+      "majority_pct": 80
+     },
+     "rounds": 1,
+     "title": "85% of validators vote for the amendment"
+    }
+   ],
+   "title": "Amendment majority: 70% vote for an amendment for two weeks"
+  },
+  {
+   "id": "S-03",
+   "runs": [
+    {
+     "events": [
+      {
+       "round": 0,
+       "text": "10 peers report close times: nine at 1000, one at 1120"
+      },
+      {
+       "round": 1,
+       "text": "close-time offset: postfiatd 0 s (weighted median), rippled 11 s (arithmetic mean)"
+      }
+     ],
+     "kind": "close_offset",
+     "label": "A",
+     "outcome": "diverged",
+     "params": {
+      "peer_times": [
+       [
+        1000,
+        9
+       ],
+       [
+        1120,
+        1
+       ]
+      ],
+      "self_time": 1000
+     },
+     "postfiatd": {
+      "method": "weighted_median",
+      "offset_seconds": 0
+     },
+     "reason": "different_result_same_input",
+     "rippled": {
+      "method": "arithmetic_mean",
+      "offset_seconds": 11
+     },
+     "rounds": 1,
+     "title": "one peer 120 seconds off, the rest on time"
+    },
+    {
+     "events": [
+      {
+       "round": 0,
+       "text": "10 peers report close times: all ten at 1000"
+      },
+      {
+       "round": 1,
+       "text": "close-time offset: postfiatd 0 s (weighted median), rippled 0 s (arithmetic mean)"
+      }
+     ],
+     "kind": "close_offset",
+     "label": "B",
+     "outcome": "matched",
+     "params": {
+      "peer_times": [
+       [
+        1000,
+        10
+       ]
+      ],
+      "self_time": 1000
+     },
+     "postfiatd": {
+      "method": "weighted_median",
+      "offset_seconds": 0
+     },
+     "reason": "same_result_both_implementations",
+     "rippled": {
+      "method": "arithmetic_mean",
+      "offset_seconds": 0
+     },
+     "rounds": 1,
+     "title": "all peers on time"
+    }
+   ],
+   "title": "Close-time offset: one peer reports a close time 120 seconds off"
+  },
+  {
+   "id": "S-04",
+   "runs": [
+    {
+     "events": [
+      {
+       "round": 0,
+       "text": "close-time votes: 1000 has 5, 1005 has 5; both meet the threshold"
+      },
+      {
+       "round": 1,
+       "text": "tied bins [[1000, 5], [1005, 5]]: postfiatd picks 1000 (earliest), rippled picks 1005 (latest)"
+      }
+     ],
+     "kind": "tie_break",
+     "label": "A",
+     "outcome": "diverged",
+     "params": {
+      "bins": [
+       [
+        1000,
+        5
+       ],
+       [
+        1005,
+        5
+       ]
+      ],
+      "threshold": 5
+     },
+     "postfiatd": {
+      "consensus_close_time": 1000,
+      "tie_break": "earliest_wins"
+     },
+     "reason": "different_result_same_input",
+     "rippled": {
+      "consensus_close_time": 1005,
+      "tie_break": "latest_wins"
+     },
+     "rounds": 1,
+     "title": "bins 1000 and 1005 tie at 5 votes each"
+    }
+   ],
+   "title": "Close-time tie-break: two close-time bins tie for the most votes"
+  },
+  {
+   "id": "S-05",
+   "runs": [
+    {
+     "events": [
+      {
+       "round": 0,
+       "text": "70% of trusted validators have moved on to the next ledger"
+      },
+      {
+       "round": 1,
+       "text": "70% moved on: postfiatd proceeds (phase-0 threshold 67%), rippled pauses (phase-0 threshold 80%)"
+      }
+     ],
+     "kind": "pause_phase",
+     "label": "A",
+     "outcome": "diverged",
+     "params": {
+      "validators_moved_on_pct": 70
+     },
+     "postfiatd": {
+      "pauses": false,
+      "phase0_threshold": 67
+     },
+     "reason": "different_result_same_input",
+     "rippled": {
+      "pauses": true,
+      "phase0_threshold": 80
+     },
+     "rounds": 1,
+     "title": "70% of validators have moved on"
+    },
+    {
+     "events": [
+      {
+       "round": 0,
+       "text": "90% of trusted validators have moved on to the next ledger"
+      },
+      {
+       "round": 1,
+       "text": "90% moved on: postfiatd proceeds (phase-0 threshold 67%), rippled proceeds (phase-0 threshold 80%)"
+      }
+     ],
+     "kind": "pause_phase",
+     "label": "B",
+     "outcome": "matched",
+     "params": {
+      "validators_moved_on_pct": 90
+     },
+     "postfiatd": {
+      "pauses": false,
+      "phase0_threshold": 67
+     },
+     "reason": "same_result_both_implementations",
+     "rippled": {
+      "pauses": false,
+      "phase0_threshold": 80
+     },
+     "rounds": 1,
+     "title": "90% of validators have moved on"
+    }
+   ],
+   "title": "Pause phases: 70% of validators have moved on"
+  },
+  {
+   "id": "S-06",
+   "runs": [
+    {
+     "events": [
+      {
+       "round": 0,
+       "text": "ledger N+1 carries a ttVALIDATOR_VOTE pseudo-transaction for a validator that voted on ledger N"
+      },
+      {
+       "round": 1,
+       "text": "ttVALIDATOR_VOTE is applied by postfiatd (creates ltVALIDATOR_VOTE_STATS) and rejected by rippled as an unknown transaction type"
+      }
+     ],
+     "kind": "pseudo_tx",
+     "label": "A",
+     "outcome": "incompatible",
+     "params": {
+      "amendment_enabled": true,
+      "tx_type": "ttVALIDATOR_VOTE"
+     },
+     "postfiatd": {
+      "result": "applied_creates_vote_stats",
+      "tx_type": "ttVALIDATOR_VOTE"
+     },
+     "reason": "unrepresentable_on_rippled",
+     "rippled": {
+      "result": "rejected_unknown_tx_type",
+      "tx_type": "ttVALIDATOR_VOTE"
+     },
+     "rounds": 1,
+     "title": "a ttVALIDATOR_VOTE pseudo-transaction is included in ledger N+1"
+    }
+   ],
+   "title": "Validator vote pseudo-transaction in the next ledger"
+  },
+  {
+   "id": "S-07",
+   "runs": [
+    {
+     "events": [
+      {
+       "round": 0,
+       "text": "a transaction arrives whose sender account is on the consensus exclusion list"
+      },
+      {
+       "round": 1,
+       "text": "excluded source account: postfiatd rejects at preflight1 (temBAD_SRC_ACCOUNT); rippled applies the transaction normally"
+      }
+     ],
+     "kind": "exclusion",
+     "label": "A",
+     "outcome": "diverged",
+     "params": {
+      "account_excluded": true,
+      "tx_direction": "source"
+     },
+     "postfiatd": {
+      "code": "temBAD_SRC_ACCOUNT",
+      "result": "rejected_at_preflight"
+     },
+     "reason": "different_result_same_input",
+     "rippled": {
+      "code": null,
+      "result": "applies_normally"
+     },
+     "rounds": 1,
+     "title": "an excluded account is the sender"
+    }
+   ],
+   "title": "Excluded account submits a transaction"
+  },
+  {
+   "id": "S-08",
+   "runs": [
+    {
+     "events": [
+      {
+       "round": 0,
+       "text": "a trusted validator's validation carries sfExclusionAdd for one account"
+      },
+      {
+       "round": 1,
+       "text": "postfiatd records the vote and the exclusion change; rippled fails to deserialize the validation (unknown field sfExclusionAdd)"
+      }
+     ],
+     "kind": "validation_fields",
+     "label": "A",
+     "outcome": "incompatible",
+     "params": {
+      "has_exclusion_fields": true
+     },
+     "postfiatd": {
+      "result": "vote_recorded_with_exclusion"
+     },
+     "reason": "unrepresentable_on_rippled",
+     "rippled": {
+      "result": "deserialization_fails_unknown_field"
+     },
+     "rounds": 1,
+     "title": "a validation carries sfExclusionAdd"
+    }
+   ],
+   "title": "Validation carrying exclusion fields reaches a peer"
+  },
+  {
+   "id": "S-09",
+   "runs": [
+    {
+     "events": [
+      {
+       "round": 0,
+       "text": "a fresh node starts on network ID 2025 in production mode"
+      },
+      {
+       "round": 1,
+       "text": "genesis account: postfiatd r4vhrMChCsaoFsBoCkRTRGUuc1njfr7bmA, rippled rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh"
+      }
+     ],
+     "kind": "genesis",
+     "label": "A",
+     "outcome": "diverged",
+     "params": {
+      "network_id": 2025,
+      "standalone": false
+     },
+     "postfiatd": {
+      "genesis_account": "r4vhrMChCsaoFsBoCkRTRGUuc1njfr7bmA"
+     },
+     "reason": "different_result_same_input",
+     "rippled": {
+      "genesis_account": "rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh"
+     },
+     "rounds": 1,
+     "title": "network 2025, production mode"
+    },
+    {
+     "events": [
+      {
+       "round": 0,
+       "text": "a fresh node starts on network ID 2025 in standalone mode"
+      },
+      {
+       "round": 1,
+       "text": "genesis account: postfiatd rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh, rippled rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh"
+      }
+     ],
+     "kind": "genesis",
+     "label": "B",
+     "outcome": "matched",
+     "params": {
+      "network_id": 2025,
+      "standalone": true
+     },
+     "postfiatd": {
+      "genesis_account": "rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh"
+     },
+     "reason": "same_result_both_implementations",
+     "rippled": {
+      "genesis_account": "rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh"
+     },
+     "rounds": 1,
+     "title": "network 2025, standalone mode"
+    }
+   ],
+   "title": "Genesis ledger on network 2025"
+  },
+  {
+   "id": "S-10",
+   "runs": [
+    {
+     "events": [
+      {
+       "round": 0,
+       "text": "a peer-supplied ledger-data node ID arrives with depth 70; the leaf depth is 64"
+      },
+      {
+       "round": 1,
+       "text": "node ID depth 70 (leaf depth 64): postfiatd clamps to 64 and continues; rippled indexes out of range"
+      }
+     ],
+     "kind": "shamap_depth",
+     "label": "A",
+     "outcome": "degraded",
+     "params": {
+      "depth": 70,
+      "leaf_depth": 64
+     },
+     "postfiatd": {
+      "effective_depth": 64,
+      "result": "clamped_to_leaf_depth"
+     },
+     "reason": "rippled_side_degrades",
+     "rippled": {
+      "effective_depth": 70,
+      "result": "unsafe_out_of_range"
+     },
+     "rounds": 1,
+     "title": "peer-supplied node ID depth 70 (leaf depth 64)"
+    }
+   ],
+   "title": "SHAMap node ID with an out-of-range depth"
+  },
+  {
+   "id": "S-11",
+   "runs": [
+    {
+     "events": [
+      {
+       "round": 0,
+       "text": "a payment strand adds 9223372036854775800 and 100 drops"
+      },
+      {
+       "round": 1,
+       "text": "strand amounts [9223372036854775800, 100]: postfiatd ends the strand as tecPATH_DRY on overflow; rippled wraps to -9223372036854775716"
+      }
+     ],
+     "kind": "payment_overflow",
+     "label": "A",
+     "outcome": "diverged",
+     "params": {
+      "amounts": [
+       9223372036854775800,
+       100
+      ],
+      "int64_max": 9223372036854775807
+     },
+     "postfiatd": {
+      "result": "tecPATH_DRY",
+      "sum": null
+     },
+     "reason": "different_result_same_input",
+     "rippled": {
+      "result": "wraps_silently",
+      "sum": -9223372036854775716
+     },
+     "rounds": 1,
+     "title": "two strand amounts sum past int64 max"
+    }
+   ],
+   "title": "Payment strand sum overflows int64"
+  },
+  {
+   "id": "S-12",
+   "runs": [
+    {
+     "events": [
+      {
+       "round": 0,
+       "text": "a submitted transaction carries a JSON array field with 600 elements"
+      },
+      {
+       "round": 1,
+       "text": "array of 600 elements: postfiatd rejects (cap 512), rippled accepts (no cap)"
+      }
+     ],
+     "kind": "json_array",
+     "label": "A",
+     "outcome": "diverged",
+     "params": {
+      "array_size": 600
+     },
+     "postfiatd": {
+      "result": "rejected_array_too_big"
+     },
+     "reason": "different_result_same_input",
+     "rippled": {
+      "result": "accepted"
+     },
+     "rounds": 1,
+     "title": "600-element array field in a submitted transaction"
+    }
+   ],
+   "title": "JSON transaction with a 600-element array field"
+  },
+  {
+   "id": "S-13",
+   "runs": [
+    {
+     "events": [
+      {
+       "round": 0,
+       "text": "1,500 manifests from master keys on no validator list arrive by peer gossip"
+      },
+      {
+       "round": 1,
+       "text": "1500 unlisted manifests: postfiatd keeps 1000 (oldest evicted), rippled keeps all 1500 (unbounded)"
+      }
+     ],
+     "kind": "manifest_flood",
+     "label": "A",
+     "outcome": "degraded",
+     "params": {
+      "unlisted_manifests": 1500
+     },
+     "postfiatd": {
+      "cap": 1000,
+      "kept": 1000
+     },
+     "reason": "rippled_side_degrades",
+     "rippled": {
+      "cap": null,
+      "kept": 1500
+     },
+     "rounds": 1,
+     "title": "1,500 unlisted manifests arrive by peer gossip"
+    }
+   ],
+   "title": "Manifest flood: 1,500 unlisted validator manifests gossiped"
+  }
+ ],
+ "threshold_table": [
+  {
+   "quorum_postfiatd": 3,
+   "quorum_rippled": 3,
+   "tolerated_byzantine_postfiatd": 0,
+   "tolerated_byzantine_rippled": 0,
+   "unl_size": 3
+  },
+  {
+   "quorum_postfiatd": 3,
+   "quorum_rippled": 4,
+   "tolerated_byzantine_postfiatd": 1,
+   "tolerated_byzantine_rippled": 0,
+   "unl_size": 4
+  },
+  {
+   "quorum_postfiatd": 5,
+   "quorum_rippled": 6,
+   "tolerated_byzantine_postfiatd": 2,
+   "tolerated_byzantine_rippled": 1,
+   "unl_size": 7
+  },
+  {
+   "quorum_postfiatd": 7,
+   "quorum_rippled": 8,
+   "tolerated_byzantine_postfiatd": 3,
+   "tolerated_byzantine_rippled": 2,
+   "unl_size": 10
+  },
+  {
+   "quorum_postfiatd": 15,
+   "quorum_rippled": 17,
+   "tolerated_byzantine_postfiatd": 6,
+   "tolerated_byzantine_rippled": 4,
+   "unl_size": 21
+  },
+  {
+   "quorum_postfiatd": 24,
+   "quorum_rippled": 28,
+   "tolerated_byzantine_postfiatd": 11,
+   "tolerated_byzantine_rippled": 7,
+   "unl_size": 35
+  },
+  {
+   "quorum_postfiatd": 67,
+   "quorum_rippled": 80,
+   "tolerated_byzantine_postfiatd": 33,
+   "tolerated_byzantine_rippled": 20,
+   "unl_size": 100
+  }
+ ],
+ "totals": {
+  "degraded": 2,
+  "diverged": 9,
+  "incompatible": 2,
+  "matched": 5,
+  "runs": 18,
+  "scenarios": 13
+ }
+}
