@@ -1,0 +1,942 @@
+{
+ "pinned_commit": "0085a1ff885d6a446369cf73a4430f75af22be55",
+ "repo": "postfiatd",
+ "rippled_commit": "3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c",
+ "rippled_repo": "rippled",
+ "rippled_tag": "3.1.2",
+ "files": {
+  "postfiatd": {
+   "src/xrpld/consensus/ConsensusParms.h": {
+    "sha256": "95f6ea2da07862ff830ab2eaab0f3b384fb89b29260a6b717b2f6c2b7380cca7",
+    "git_blob_sha": "d565bd9a5228de171cc777a0a098592f9e8505df",
+    "lines": 202,
+    "size_bytes": 8302
+   },
+   "src/xrpld/app/misc/detail/ValidatorList.cpp": {
+    "sha256": "a1499c9c0f43be56ea657b2940701a38898117fb0dbdf83cf481de65cad503d4",
+    "git_blob_sha": "861e2112c1f9355e03b9e42a7565cf6f37cf8c2e",
+    "lines": 2193,
+    "size_bytes": 72746
+   },
+   "include/xrpl/protocol/SystemParameters.h": {
+    "sha256": "1ddb7af3e76708103ed5a43320fbeceeaa9b95ed06a436020790a12c55226fcc",
+    "git_blob_sha": "48202928205df69ede2398618420d5585d82b3c4",
+    "lines": 95,
+    "size_bytes": 3242
+   },
+   "src/xrpld/app/consensus/RCLConsensus.cpp": {
+    "sha256": "72716393a820832d7fd6f6084f4ac9534fdc7ccf09c10f5aa8d2f129828a0cee",
+    "git_blob_sha": "457555cc1c83cb617a6838e0099fc93e1d715b49",
+    "lines": 1156,
+    "size_bytes": 37567
+   },
+   "src/xrpld/consensus/Consensus.h": {
+    "sha256": "c600a12673215a68513542bac16b89dccabff37f3652d79b8159860b00898dd8",
+    "git_blob_sha": "9ccc080857e2be382365dff5f349544b9907d9cf",
+    "lines": 1926,
+    "size_bytes": 65913
+   },
+   "src/xrpld/consensus/DisputedTx.h": {
+    "sha256": "49c22b1cc25a55834b59dff8ee0161ef7b973a9110844d1b6af1001a1ebc9149",
+    "git_blob_sha": "19df205249720c26747d359ec6f9542395c2c038",
+    "lines": 365,
+    "size_bytes": 11494
+   },
+   "include/xrpl/protocol/STValidation.h": {
+    "sha256": "dd1b472baa2be7c191597906ea4eadda8e2d4b8513c2ef0b5ec71b2734c92033",
+    "git_blob_sha": "27a18f8dcd6e0cf11a0c6c83e7e66ce860767fe4",
+    "lines": 314,
+    "size_bytes": 9257
+   },
+   "src/libxrpl/protocol/STValidation.cpp": {
+    "sha256": "bddbc44df78d7ae2e28319a9e47cf2fbcd24643163615f11bdc3b51a6590a12b",
+    "git_blob_sha": "d2cb0586f261e9e06fa31f0da9c3fdc28cfc62ca",
+    "lines": 187,
+    "size_bytes": 5493
+   },
+   "src/xrpld/app/consensus/RCLValidations.cpp": {
+    "sha256": "cf96cc049a4050d61926c57af4e5021845ee0e0553ff25daf66354f800ccbd32",
+    "git_blob_sha": "669d69957da77a68bb5ace92a5e0ff789572be85",
+    "lines": 279,
+    "size_bytes": 9726
+   },
+   "src/xrpld/app/misc/Manifest.h": {
+    "sha256": "3eaf20a71423cf609855273aa8fcb7708f18ed9bfd4a5cca3bf37aab334b6755",
+    "git_blob_sha": "eb887b8166b45be76142eda2b66f6441935e087f",
+    "lines": 561,
+    "size_bytes": 17676
+   },
+   "src/xrpld/app/misc/ValidatorList.h": {
+    "sha256": "574b96520e38999a3a3ecd9d326a39ad02f0a1511a72f95a7f86fc34e46f1496",
+    "git_blob_sha": "b610dd81dc479895973ed48756e1803f93b3c95c",
+    "lines": 988,
+    "size_bytes": 30156
+   },
+   "src/xrpld/app/ledger/Ledger.cpp": {
+    "sha256": "8c56833ab46470050f355c06efec642ed4054209ffcb63084aca9da734f82516",
+    "git_blob_sha": "26552704258627756361a07e0c85a260ed229321",
+    "lines": 1166,
+    "size_bytes": 33022
+   },
+   "src/xrpld/app/misc/SHAMapStoreImp.cpp": {
+    "sha256": "8bfa87fc6c2ac346c76737176d2461e3e9ad9e6d5779232d8606750b99157ca5",
+    "git_blob_sha": "080e0d016fd8122155c3bbb14bfdb379765a182d",
+    "lines": 731,
+    "size_bytes": 23426
+   },
+   "src/xrpld/shamap/detail/SHAMapNodeID.cpp": {
+    "sha256": "96617e035840ae8e1e5ade0212f3de895e18ab6a6a09b26d6f374227bcc7832f",
+    "git_blob_sha": "83a4534c3a185aafdaf0d91a2b5724dfb0a5921a",
+    "lines": 175,
+    "size_bytes": 5826
+   },
+   "src/xrpld/app/ledger/detail/LedgerReplayMsgHandler.h": {
+    "sha256": "6fb29d8e292ae476d8fe38732cc2756c1af2ce8d16548f32497461f942a823e9",
+    "git_blob_sha": "0d23cfc15364f6fe326ffbccd24c18cb7ecb7cc8",
+    "lines": 88,
+    "size_bytes": 3057
+   },
+   "src/xrpld/app/ledger/detail/LedgerReplayMsgHandler.cpp": {
+    "sha256": "6c8f72cfcb08d12bfadc60a8d86f23b1ea5b2d6fd8fc758a35235ae6d96dec5a",
+    "git_blob_sha": "e78c49c26df44889f5b8d252b002f0f13f8477c0",
+    "lines": 346,
+    "size_bytes": 11859
+   },
+   "src/xrpld/app/ledger/detail/LedgerMaster.cpp": {
+    "sha256": "eff20a953d6b6fafe7ca44a2999a4c90c5ef62eea82e43baed8ba3e959da5ef1",
+    "git_blob_sha": "67826c253286c69622334382ac89db711c7a60d2",
+    "lines": 2285,
+    "size_bytes": 70382
+   },
+   "src/xrpld/app/ledger/ConsensusTransSetSF.cpp": {
+    "sha256": "037ec493ed5d5d24b53d65a061b244609044a4270f37a6f251847ebab9061148",
+    "git_blob_sha": "e8a4f47bfed0038f87d3cb4cd2bbf61be08e29ad",
+    "lines": 124,
+    "size_bytes": 4309
+   },
+   "src/xrpld/app/main/Application.cpp": {
+    "sha256": "ce51509895eb4f27d42dd0d86fb49df0806301810867c383d4836405da2a7d65",
+    "git_blob_sha": "e6ca17172f5213cc5e7c51df9a546a587f62e607",
+    "lines": 2287,
+    "size_bytes": 68679
+   },
+   "src/xrpld/app/tx/detail/Change.cpp": {
+    "sha256": "0adcc813ae9cf1d915d77e45b5e2c7e8f780b44a2daea91ef3a06f87706a0150",
+    "git_blob_sha": "9079934b0434c4a43e3979e0d257b29962d1c132",
+    "lines": 752,
+    "size_bytes": 25990
+   },
+   "include/xrpl/protocol/detail/transactions.macro": {
+    "sha256": "752d156f094460e74ae234c47c5323adaaafe6a9f36b6c9a00ae3753d6a18c49",
+    "git_blob_sha": "4ed5336f3dddf4e3a962979ae6353277d750be15",
+    "lines": 1150,
+    "size_bytes": 32505
+   },
+   "include/xrpl/protocol/detail/ledger_entries.macro": {
+    "sha256": "26fd13beaaed3b071671dd21c5350fdc8655c18282c4e1cb8ba2daf210fcc53b",
+    "git_blob_sha": "ba9a2e6d0ed19113b580f8a603d7f6082f65269f",
+    "lines": 642,
+    "size_bytes": 24140
+   },
+   "src/xrpld/app/tx/detail/Transactor.cpp": {
+    "sha256": "f68aed0f1eb6e592100bfcf3a7e5ef4e28c1e77ddc5cdcdc4dc3a7502fd625f4",
+    "git_blob_sha": "fb84c40ff2e300e756bee1b4e3d3b995c44d343d",
+    "lines": 1437,
+    "size_bytes": 46576
+   },
+   "include/xrpl/protocol/detail/sfields.macro": {
+    "sha256": "eaf93c4dcc56d86e58be51d1acab71c90e3f64fc4bc79806882a5458d62c20e3",
+    "git_blob_sha": "e6797d24f5229a28077360e7949713a6368f7e60",
+    "lines": 451,
+    "size_bytes": 23119
+   },
+   "include/xrpl/protocol/Protocol.h": {
+    "sha256": "b0210140d820ed3308160979ba2f4be290bc034a186bb39ff3b638bb65a3b2c8",
+    "git_blob_sha": "b140390fc712ca00902db7248cfcc928e9cd32cf",
+    "lines": 325,
+    "size_bytes": 11615
+   },
+   "include/xrpl/protocol/detail/features.macro": {
+    "sha256": "c564926fa081d8ef09f65976f66f8e712cecf58ee1c68e0abf58345eea00e772",
+    "git_blob_sha": "a88ebd1a492b9b5d658bde9c5f2835094536b244",
+    "lines": 165,
+    "size_bytes": 10479
+   },
+   "include/xrpl/basics/MathUtilities.h": {
+    "sha256": "e48632d7140e977a61fba11791a7047232f1c9de2b3ac3342049495b1e93711c",
+    "git_blob_sha": "1aa627c48329146db8647adc367f946bcfbac336",
+    "lines": 152,
+    "size_bytes": 5699
+   },
+   "src/libxrpl/ledger/View.cpp": {
+    "sha256": "a2457d6e70129bf87e9b4fc27b96ba121302d3954609a9de7c496b22fe415b70",
+    "git_blob_sha": "2a1cb0cab5cb95a643ff1d0322192868b0aeb55f",
+    "lines": 3961,
+    "size_bytes": 123511
+   },
+   "src/xrpld/app/paths/detail/Steps.h": {
+    "sha256": "b9971af094316ed1148d8d584eb2f5ed43731980068c2a39adb762e084c7d7d8",
+    "git_blob_sha": "6936dac16dc784e3a0001b6047e81bcefe7c1836",
+    "lines": 680,
+    "size_bytes": 22597
+   },
+   "src/xrpld/app/tx/detail/InvariantCheck.h": {
+    "sha256": "b03d7aff792a396a61b9ffbb76446b92a841d2d1fe17d7670e4763c0ac9fcf59",
+    "git_blob_sha": "327f98541e72ec22810be96c986f704fdbfbb60c",
+    "lines": 972,
+    "size_bytes": 24799
+   },
+   "src/xrpld/app/tx/detail/InvariantCheck.cpp": {
+    "sha256": "90b313177b6c2e106bc00a4e7b6af7c8031861c0cb419ffa9a9255e11e0e3619",
+    "git_blob_sha": "07272b28582e33f656e3fb022a92c14c7d8ca4a8",
+    "lines": 3599,
+    "size_bytes": 118967
+   },
+   "src/libxrpl/protocol/STObject.cpp": {
+    "sha256": "13e609b93680f74ca70ec2516248589a44a1fa91654139c46ae9b31361c07ed6",
+    "git_blob_sha": "4b7aafdacb2573453a2014654587d6ace0267454",
+    "lines": 979,
+    "size_bytes": 22870
+   },
+   "src/libxrpl/protocol/Serializer.cpp": {
+    "sha256": "5e8a56c5153ea929df7bc1eaae591a14e16724b6fe2dfe2382ab47ecabb4e7b1",
+    "git_blob_sha": "ec7cc526665c2b005ebccb4fa68e01a5e0c18bb0",
+    "lines": 552,
+    "size_bytes": 12348
+   },
+   "include/xrpl/protocol/STParsedJSON.h": {
+    "sha256": "a1c9df5846589f294466a0b40caa6671bb28e27eaf4825b2f68080cb7650eef5",
+    "git_blob_sha": "3ca4881de0da436fffa3d0e3ad75e3238e6f2944",
+    "lines": 66,
+    "size_bytes": 2500
+   }
+  },
+  "rippled": {
+   "src/xrpld/consensus/ConsensusParms.h": {
+    "sha256": "f18829f22c2078e7c8369642e5187f65e21fbb3ccac20cc90cb5c704ca624e41",
+    "git_blob_sha": "9bfacfb8d6fded8d07958cedc4f1151ce0942015",
+    "lines": 202,
+    "size_bytes": 8302
+   },
+   "src/xrpld/app/misc/detail/ValidatorList.cpp": {
+    "sha256": "81419ce5e1855ee4f56dd67224895fe0a60ccb984cd1f26399557f5d4871431b",
+    "git_blob_sha": "92095b721112865ef2b38d35ff6b9c6c501de75f",
+    "lines": 2178,
+    "size_bytes": 72051
+   },
+   "include/xrpl/protocol/SystemParameters.h": {
+    "sha256": "01687a8640594eab00f14b4cd6a9587c863452c9da13216a3883600447fd8642",
+    "git_blob_sha": "164538ca92fa8b26af4243bf1cb5b4eccb0322aa",
+    "lines": 95,
+    "size_bytes": 3231
+   },
+   "src/xrpld/app/consensus/RCLConsensus.cpp": {
+    "sha256": "86d912bc41a8c45efe88d6c3666ab4b9012f0c8afc35116b4c70638e643daef9",
+    "git_blob_sha": "292ba7d483db4a2c097eb5aa68da8f42897a8630",
+    "lines": 1135,
+    "size_bytes": 36649
+   },
+   "src/xrpld/consensus/Consensus.h": {
+    "sha256": "2713220596ae3659451ba4ad4a0a7b9918d84f84e097527d35cbb04fd7cc60b3",
+    "git_blob_sha": "df6cedccff13ce514c089e8dc4c9cf67057c227b",
+    "lines": 1919,
+    "size_bytes": 65409
+   },
+   "src/xrpld/consensus/DisputedTx.h": {
+    "sha256": "b9ff3bb255ea2819b83a05c9a0d5490596c42ebd5e0857854c8c8bca15ef5de7",
+    "git_blob_sha": "e774c8366cd34d66900d248fa3e30e92fee95dc4",
+    "lines": 365,
+    "size_bytes": 11486
+   },
+   "include/xrpl/protocol/STValidation.h": {
+    "sha256": "9ce4b20eb75fd5d93ac3611ad2a9d846d7b3c21043ab85ba61f54819b44ea47a",
+    "git_blob_sha": "991922514da802ddd61d2a64f0594a9a33de8f8b",
+    "lines": 291,
+    "size_bytes": 8428
+   },
+   "src/libxrpl/protocol/STValidation.cpp": {
+    "sha256": "6d58af6fdcb8765c6098a83e3448d2ced2ea24574c1d5d3de632b0c3d4b0cf8b",
+    "git_blob_sha": "51246a1830b751ccbb8fdd3f332a524bc2ec70e1",
+    "lines": 156,
+    "size_bytes": 4381
+   },
+   "src/xrpld/app/consensus/RCLValidations.cpp": {
+    "sha256": "9f09c15e6b1281cc973746b49cfe3c85d3da8893e1d5e1ecf19387657bb73c1c",
+    "git_blob_sha": "5305c95357146dc0bf7cbfca8ce4d9c858623220",
+    "lines": 250,
+    "size_bytes": 8353
+   },
+   "src/xrpld/app/misc/Manifest.h": {
+    "sha256": "55600518e0893140febe1261082e64af8459bc02ac2ea62675ac092f6996c142",
+    "git_blob_sha": "1b53fda77b5ee2215091ca6d1301dd06272dd433",
+    "lines": 467,
+    "size_bytes": 13993
+   },
+   "src/xrpld/app/misc/ValidatorList.h": {
+    "sha256": "c8772a7d2ab1f892c97eef7b29044224c2cb4b02ace22f5f915816d91b328780",
+    "git_blob_sha": "9a2018cbd4fff02e41069c0ce8b000cbd3f4809b",
+    "lines": 975,
+    "size_bytes": 29750
+   },
+   "src/xrpld/app/ledger/Ledger.cpp": {
+    "sha256": "bb88a76876b55c4cb079845957c3e8ec70e854e5ef33c1ab5fe534fe4845663f",
+    "git_blob_sha": "19aec6420c25d5143ff3071e9cadea5d8931c6ac",
+    "lines": 1146,
+    "size_bytes": 32190
+   },
+   "src/xrpld/app/misc/SHAMapStoreImp.cpp": {
+    "sha256": "bd7c45570e5a174ed95a1bb1d754bf1e8b6909f5772cda2683c75afc2439236a",
+    "git_blob_sha": "52ea40cf94de0fe12913a6478d78fd0f861679ac",
+    "lines": 691,
+    "size_bytes": 21493
+   },
+   "src/xrpld/shamap/detail/SHAMapNodeID.cpp": {
+    "sha256": "96b866ec49336b2f90703f80e9cf38419f7258166fad6ed4eb11fcbb882584a8",
+    "git_blob_sha": "efe4f959361c2d75f49375c5c54b0614eb435676",
+    "lines": 153,
+    "size_bytes": 4734
+   },
+   "src/xrpld/app/ledger/detail/LedgerReplayMsgHandler.h": {
+    "sha256": "a182e53fb1d90daee233b4e5dc355d62eb56ded811cc4f9b6a1344636caea322",
+    "git_blob_sha": "151a21b9563fa092a3ae5bf3b87487dee4e6f146",
+    "lines": 78,
+    "size_bytes": 2691
+   },
+   "src/xrpld/app/ledger/detail/LedgerReplayMsgHandler.cpp": {
+    "sha256": "ce355df60829e465d73c9e74ab8dea4d99820aac0268eccdc127bbe2a7b94f38",
+    "git_blob_sha": "5bfad61bf4afe46f40b1fb1a15b6e627bc51f8ae",
+    "lines": 295,
+    "size_bytes": 9911
+   },
+   "src/xrpld/app/ledger/ConsensusTransSetSF.cpp": {
+    "sha256": "6e4c012f1241e59414c2740c1618e243773419b380500c45a6ae8cd1e8882ed9",
+    "git_blob_sha": "e62426b7201ff5911caa75d999c05fe73e57a1e8",
+    "lines": 108,
+    "size_bytes": 3674
+   },
+   "src/xrpld/app/tx/detail/Change.cpp": {
+    "sha256": "8d60d42c9c662b2aae3a8890d31586508058999b7fc0cab56a3ec688c04a1fe6",
+    "git_blob_sha": "f78eaf0f614ba52681f41472e54aa72d4171adf3",
+    "lines": 521,
+    "size_bytes": 16547
+   },
+   "include/xrpl/protocol/detail/ledger_entries.macro": {
+    "sha256": "69deb7074ced5766b0a0f2efdd055b2952234a6baaa4c2ee188d3b81443a8189",
+    "git_blob_sha": "3e17f33c24d878ee5f66cb2c7ee10863dae36761",
+    "lines": 626,
+    "size_bytes": 23546
+   },
+   "src/xrpld/app/tx/detail/Transactor.cpp": {
+    "sha256": "2684f0cceda6d5c3c863af98e947b9964bb9a534caa3ba9a0c36fbc119c48858",
+    "git_blob_sha": "fdc0c48cef7b955f09c545255fc49a8837c4ed88",
+    "lines": 1416,
+    "size_bytes": 45788
+   },
+   "include/xrpl/protocol/detail/features.macro": {
+    "sha256": "2ce615cfe1c3d030435b67a5293edc37ae366af336160405fd6a3c1cc41f2532",
+    "git_blob_sha": "463f2a983b5e06fd38f0564cc75f480d26f3fd88",
+    "lines": 163,
+    "size_bytes": 10279
+   },
+   "src/libxrpl/ledger/View.cpp": {
+    "sha256": "eddef48b87eb703850e82df8a5564f618722c7b98d9d21a1d0c0fc5abf96fc31",
+    "git_blob_sha": "d797d17fea974f0e17f17e5a403761e12bf30d4b",
+    "lines": 3950,
+    "size_bytes": 122926
+   },
+   "src/xrpld/app/tx/detail/InvariantCheck.h": {
+    "sha256": "2b452f119a7bd2bc372b5cd9d9db34fdc40f195f27a0575cb5dc1e2b5a1e97c1",
+    "git_blob_sha": "0bef7fe3cb7a83df088217ddf7239beed802a281",
+    "lines": 968,
+    "size_bytes": 24619
+   },
+   "src/xrpld/app/tx/detail/InvariantCheck.cpp": {
+    "sha256": "e68b1b4ffb803cffc4bfbd19778ea7c182938d38de4d381a637c3444cbe99c92",
+    "git_blob_sha": "9dec9212781a9f4c5a288a1e95de249639736671",
+    "lines": 3595,
+    "size_bytes": 118794
+   },
+   "src/libxrpl/protocol/STObject.cpp": {
+    "sha256": "583fe15aed84be431c43a5bf661bc2b3b21a44b2aaa40d6f2d7016e990d19481",
+    "git_blob_sha": "b015c9a9a7b9bf1588d475441af08eed9b2d3792",
+    "lines": 965,
+    "size_bytes": 22359
+   },
+   "src/libxrpl/protocol/Serializer.cpp": {
+    "sha256": "3edcf08843506ce77418a4dc30d706ee657b0cc0f00f72fceb7f5c4136fa3e67",
+    "git_blob_sha": "098e68d2b21a02a354499269f76d0d67bfde3dc4",
+    "lines": 541,
+    "size_bytes": 11938
+   },
+   "include/xrpl/protocol/STParsedJSON.h": {
+    "sha256": "8d7b9c02bd4f836852fb8f06fb0248d627f68bea29b35af24e27f75f44a85f7a",
+    "git_blob_sha": "9c770fe94d2f5f935ac65d381737728c142b66b1",
+    "lines": 59,
+    "size_bytes": 2154
+   }
+  }
+ },
+ "excerpts": {
+  "E01": {
+   "sha256": "36b1073c1218dd227ec928e456e7684004bd289484f3fa1abbc188fb553df6d1",
+   "file": "src/xrpld/consensus/ConsensusParms.h",
+   "lines": "79-79",
+   "blob_sha": "d565bd9a5228de171cc777a0a098592f9e8505df",
+   "blob_size": 8302,
+   "reference": {
+    "file": "src/xrpld/consensus/ConsensusParms.h",
+    "lines": "79-79",
+    "blob_sha": "9bfacfb8d6fded8d07958cedc4f1151ce0942015",
+    "blob_size": 8302
+   }
+  },
+  "E02": {
+   "sha256": "ad5267518342a7184f082c9509be7bd31bdab3f103ba0cb9705c639a474cb351",
+   "file": "src/xrpld/app/misc/detail/ValidatorList.cpp",
+   "lines": "1897-1900",
+   "blob_sha": "861e2112c1f9355e03b9e42a7565cf6f37cf8c2e",
+   "blob_size": 72746,
+   "reference": {
+    "file": "src/xrpld/app/misc/detail/ValidatorList.cpp",
+    "lines": "1883-1886",
+    "blob_sha": "92095b721112865ef2b38d35ff6b9c6c501de75f",
+    "blob_size": 72051
+   }
+  },
+  "E03": {
+   "sha256": "28ebad12b379ab6a839e4d11d2ed5fb46869c2a64662bb1455243de483e55a50",
+   "file": "include/xrpl/protocol/SystemParameters.h",
+   "lines": "83-87",
+   "blob_sha": "48202928205df69ede2398618420d5585d82b3c4",
+   "blob_size": 3242,
+   "reference": {
+    "file": "include/xrpl/protocol/SystemParameters.h",
+    "lines": "83-87",
+    "blob_sha": "164538ca92fa8b26af4243bf1cb5b4eccb0322aa",
+    "blob_size": 3231
+   }
+  },
+  "E04": {
+   "sha256": "d012cde477e79e13cc53fcee2e013b691480f9434f7a5b0fd0092eb47edb0401",
+   "file": "src/xrpld/app/consensus/RCLConsensus.cpp",
+   "lines": "709-728",
+   "blob_sha": "457555cc1c83cb617a6838e0099fc93e1d715b49",
+   "blob_size": 37567,
+   "reference": {
+    "file": "src/xrpld/app/consensus/RCLConsensus.cpp",
+    "lines": "704-728",
+    "blob_sha": "292ba7d483db4a2c097eb5aa68da8f42897a8630",
+    "blob_size": 36649
+   }
+  },
+  "E05": {
+   "sha256": "caf740569d453a2a617e6e12204581ee8315befbc078ff6f23e5d0908daadb78",
+   "file": "src/xrpld/consensus/Consensus.h",
+   "lines": "1602-1613",
+   "blob_sha": "9ccc080857e2be382365dff5f349544b9907d9cf",
+   "blob_size": 65913,
+   "reference": {
+    "file": "src/xrpld/consensus/Consensus.h",
+    "lines": "1605-1616",
+    "blob_sha": "df6cedccff13ce514c089e8dc4c9cf67057c227b",
+    "blob_size": 65409
+   }
+  },
+  "E06": {
+   "sha256": "eec6699cdfd75f130ab2e102028bb8c41b9c54307a1cb82dfda6553f42680c74",
+   "file": "src/xrpld/consensus/Consensus.h",
+   "lines": "1283-1294",
+   "blob_sha": "9ccc080857e2be382365dff5f349544b9907d9cf",
+   "blob_size": 65913,
+   "reference": {
+    "file": "src/xrpld/consensus/Consensus.h",
+    "lines": "1283-1294",
+    "blob_sha": "df6cedccff13ce514c089e8dc4c9cf67057c227b",
+    "blob_size": 65409
+   }
+  },
+  "E07": {
+   "sha256": "cbb9e46d8b382f570ffb491313aa17957eeaf68bd8e04126974bb1684678901e",
+   "file": "src/xrpld/consensus/DisputedTx.h",
+   "lines": "117-132",
+   "blob_sha": "19df205249720c26747d359ec6f9542395c2c038",
+   "blob_size": 11494,
+   "reference": {
+    "file": "src/xrpld/consensus/DisputedTx.h",
+    "lines": "117-132",
+    "blob_sha": "e774c8366cd34d66900d248fa3e30e92fee95dc4",
+    "blob_size": 11486
+   }
+  },
+  "E08": {
+   "sha256": "d6d87607dfe6aa0a709cad287699182c611f00068d5846fcf3bc645be93deb93",
+   "file": "include/xrpl/protocol/STValidation.h",
+   "lines": "59-92",
+   "blob_sha": "27a18f8dcd6e0cf11a0c6c83e7e66ce860767fe4",
+   "blob_size": 9257,
+   "reference": {
+    "file": "include/xrpl/protocol/STValidation.h",
+    "lines": "64-76",
+    "blob_sha": "991922514da802ddd61d2a64f0594a9a33de8f8b",
+    "blob_size": 8428
+   }
+  },
+  "E09": {
+   "sha256": "4226bef92cbecb79836054edbe8976052391e0ebeb1358854e1e26bce86d6ae8",
+   "file": "src/libxrpl/protocol/STValidation.cpp",
+   "lines": "123-150",
+   "blob_sha": "d2cb0586f261e9e06fa31f0da9c3fdc28cfc62ca",
+   "blob_size": 5493,
+   "reference": {
+    "file": "src/libxrpl/protocol/STValidation.cpp",
+    "lines": "120-132",
+    "blob_sha": "51246a1830b751ccbb8fdd3f332a524bc2ec70e1",
+    "blob_size": 4381
+   }
+  },
+  "E10": {
+   "sha256": "ca6aa02fc8ae525536bec976c81a09b1ce2f7adaccccaf8af0ce9b34992a7bfc",
+   "file": "src/libxrpl/protocol/STValidation.cpp",
+   "lines": "78-88",
+   "blob_sha": "d2cb0586f261e9e06fa31f0da9c3fdc28cfc62ca",
+   "blob_size": 5493,
+   "reference": {
+    "file": "src/libxrpl/protocol/STValidation.cpp",
+    "lines": "75-82",
+    "blob_sha": "51246a1830b751ccbb8fdd3f332a524bc2ec70e1",
+    "blob_size": 4381
+   }
+  },
+  "E11": {
+   "sha256": "e2cecff3a2cd35f4f1481767229bb4bb427faae49b59bab2e62eb922177f0bc4",
+   "file": "src/xrpld/app/consensus/RCLValidations.cpp",
+   "lines": "193-226",
+   "blob_sha": "669d69957da77a68bb5ace92a5e0ff789572be85",
+   "blob_size": 9726,
+   "reference": {
+    "file": "src/xrpld/app/consensus/RCLValidations.cpp",
+    "lines": "193-199",
+    "blob_sha": "5305c95357146dc0bf7cbfca8ce4d9c858623220",
+    "blob_size": 8353
+   }
+  },
+  "E12": {
+   "sha256": "3559e606fd686024b05e0f30a42cb94817bbe773f5fd82989fff3c189d186728",
+   "file": "src/xrpld/app/consensus/RCLConsensus.cpp",
+   "lines": "353-361",
+   "blob_sha": "457555cc1c83cb617a6838e0099fc93e1d715b49",
+   "blob_size": 37567,
+   "reference": {
+    "file": "src/xrpld/app/consensus/RCLConsensus.cpp",
+    "absent_pattern": "ValidatorVoteTracker",
+    "hits": 0
+   }
+  },
+  "E13": {
+   "sha256": "ad7ec2d08060a53a3d8ce3dc5a57f1de9c96360fd479c3e07699e660dde2095e",
+   "file": "src/xrpld/app/misc/Manifest.h",
+   "lines": "246-290",
+   "blob_sha": "eb887b8166b45be76142eda2b66f6441935e087f",
+   "blob_size": 17676,
+   "reference": {
+    "file": "src/xrpld/app/misc/Manifest.h",
+    "lines": "226-232",
+    "blob_sha": "1b53fda77b5ee2215091ca6d1301dd06272dd433",
+    "blob_size": 13993
+   }
+  },
+  "E14": {
+   "sha256": "257a095f7267766f9f56ba565eac108a69c76599f33b9d4a20b1116de756de1f",
+   "file": "src/xrpld/app/misc/ValidatorList.h",
+   "lines": "570-585",
+   "blob_sha": "b610dd81dc479895973ed48756e1803f93b3c95c",
+   "blob_size": 30156,
+   "reference": {
+    "file": "src/xrpld/app/misc/ValidatorList.h",
+    "lines": "564-572",
+    "blob_sha": "9a2018cbd4fff02e41069c0ce8b000cbd3f4809b",
+    "blob_size": 29750
+   }
+  },
+  "E15": {
+   "sha256": "f05c20dc9c5992474e553944bf1ee254a18c395f9b50990c78562fa523841b1a",
+   "file": "src/xrpld/app/ledger/Ledger.cpp",
+   "lines": "180-205",
+   "blob_sha": "26552704258627756361a07e0c85a260ed229321",
+   "blob_size": 33022,
+   "reference": {
+    "file": "src/xrpld/app/ledger/Ledger.cpp",
+    "lines": "180-186",
+    "blob_sha": "19aec6420c25d5143ff3071e9cadea5d8931c6ac",
+    "blob_size": 32190
+   }
+  },
+  "E16": {
+   "sha256": "e71f1c5b0d6b087e3db499f28ca82c39f9baf405a58b89a9cb51560b14fd8e04",
+   "file": "include/xrpl/protocol/SystemParameters.h",
+   "lines": "35-38",
+   "blob_sha": "48202928205df69ede2398618420d5585d82b3c4",
+   "blob_size": 3242,
+   "reference": {
+    "file": "include/xrpl/protocol/SystemParameters.h",
+    "lines": "35-38",
+    "blob_sha": "164538ca92fa8b26af4243bf1cb5b4eccb0322aa",
+    "blob_size": 3231
+   }
+  },
+  "E17": {
+   "sha256": "6177a0b52fa21472507a977f0686dda6c2eebec22feacde36961245b745c4e97",
+   "file": "include/xrpl/protocol/SystemParameters.h",
+   "lines": "70-76",
+   "blob_sha": "48202928205df69ede2398618420d5585d82b3c4",
+   "blob_size": 3242,
+   "reference": {
+    "file": "include/xrpl/protocol/SystemParameters.h",
+    "lines": "70-76",
+    "blob_sha": "164538ca92fa8b26af4243bf1cb5b4eccb0322aa",
+    "blob_size": 3231
+   }
+  },
+  "E18": {
+   "sha256": "5cf22a94ab42065e9ee597b6fe0843e3e6464904150548bb1bae71d2db2f2599",
+   "file": "src/xrpld/app/misc/SHAMapStoreImp.cpp",
+   "lines": "251-280",
+   "blob_sha": "080e0d016fd8122155c3bbb14bfdb379765a182d",
+   "blob_size": 23426,
+   "reference": {
+    "file": "src/xrpld/app/misc/SHAMapStoreImp.cpp",
+    "lines": "248-258",
+    "blob_sha": "52ea40cf94de0fe12913a6478d78fd0f861679ac",
+    "blob_size": 21493
+   }
+  },
+  "E19": {
+   "sha256": "599121057925082fcd4529f1a38ad51fa3549fe17b03bed3fc93eaa0146d7bc6",
+   "file": "src/xrpld/app/misc/SHAMapStoreImp.cpp",
+   "lines": "371-392",
+   "blob_sha": "080e0d016fd8122155c3bbb14bfdb379765a182d",
+   "blob_size": 23426,
+   "reference": {
+    "file": "src/xrpld/app/misc/SHAMapStoreImp.cpp",
+    "absent_pattern": "RotationExposureGuard",
+    "hits": 0
+   }
+  },
+  "E20": {
+   "sha256": "a42986a3dcc1fc7694fa553f673f01102ddd622d8c7aa48a25db253ebef2a85f",
+   "file": "src/xrpld/shamap/detail/SHAMapNodeID.cpp",
+   "lines": "57-75",
+   "blob_sha": "83a4534c3a185aafdaf0d91a2b5724dfb0a5921a",
+   "blob_size": 5826,
+   "reference": {
+    "file": "src/xrpld/shamap/detail/SHAMapNodeID.cpp",
+    "lines": "57-66",
+    "blob_sha": "efe4f959361c2d75f49375c5c54b0614eb435676",
+    "blob_size": 4734
+   }
+  },
+  "E21": {
+   "sha256": "081e4b7ba2f154c3c81b8fe61c48b9ef6c41b8298ff4a1dbbcaf08ac5d8c1f85",
+   "file": "src/xrpld/shamap/detail/SHAMapNodeID.cpp",
+   "lines": "128-160",
+   "blob_sha": "83a4534c3a185aafdaf0d91a2b5724dfb0a5921a",
+   "blob_size": 5826,
+   "reference": {
+    "file": "src/xrpld/shamap/detail/SHAMapNodeID.cpp",
+    "lines": "128-152",
+    "blob_sha": "efe4f959361c2d75f49375c5c54b0614eb435676",
+    "blob_size": 4734
+   }
+  },
+  "E22": {
+   "sha256": "5d415cab1ccd477b912fdc00c59e5fe143fd3251c6a62d1c481ef00041a87848",
+   "file": "src/xrpld/app/ledger/detail/LedgerReplayMsgHandler.h",
+   "lines": "27-80",
+   "blob_sha": "0d23cfc15364f6fe326ffbccd24c18cb7ecb7cc8",
+   "blob_size": 3057,
+   "reference": {
+    "file": "src/xrpld/app/ledger/detail/LedgerReplayMsgHandler.h",
+    "lines": "27-65",
+    "blob_sha": "151a21b9563fa092a3ae5bf3b87487dee4e6f146",
+    "blob_size": 2691
+   }
+  },
+  "E23": {
+   "sha256": "11d9b231b6bac9d74e6420afcf3d7c96427675f76d4db4109b1303b0af78036f",
+   "file": "src/xrpld/app/ledger/detail/LedgerReplayMsgHandler.cpp",
+   "lines": "105-130",
+   "blob_sha": "e78c49c26df44889f5b8d252b002f0f13f8477c0",
+   "blob_size": 11859,
+   "reference": {
+    "file": "src/xrpld/app/ledger/detail/LedgerReplayMsgHandler.cpp",
+    "lines": "103-120",
+    "blob_sha": "5bfad61bf4afe46f40b1fb1a15b6e627bc51f8ae",
+    "blob_size": 9911
+   }
+  },
+  "E24": {
+   "sha256": "257939dac9b45249b9f33de4238475f6cfef75269c88ed4609ef98f64da818f6",
+   "file": "src/xrpld/app/ledger/detail/LedgerMaster.cpp",
+   "lines": "286-310",
+   "blob_sha": "67826c253286c69622334382ac89db711c7a60d2",
+   "blob_size": 70382,
+   "reference": {
+    "file": "src/xrpld/app/ledger/detail/LedgerMaster.cpp",
+    "absent_pattern": "ExclusionManager",
+    "hits": 0
+   }
+  },
+  "E25": {
+   "sha256": "6379f763e834373b60746288111b5e84b605e6f2ef2472cff9b5d92ba951df4c",
+   "file": "src/xrpld/app/ledger/ConsensusTransSetSF.cpp",
+   "lines": "64-85",
+   "blob_sha": "e8a4f47bfed0038f87d3cb4cd2bbf61be08e29ad",
+   "blob_size": 4309,
+   "reference": {
+    "file": "src/xrpld/app/ledger/ConsensusTransSetSF.cpp",
+    "lines": "64-70",
+    "blob_sha": "e62426b7201ff5911caa75d999c05fe73e57a1e8",
+    "blob_size": 3674
+   }
+  },
+  "E26": {
+   "sha256": "ad95eaa5a9d0b2093c07aeb1202bfb6c9f196bfe6052a33fd54f7167b83d63c1",
+   "file": "src/xrpld/app/main/Application.cpp",
+   "lines": "1323-1335",
+   "blob_sha": "e6ca17172f5213cc5e7c51df9a546a587f62e607",
+   "blob_size": 68679,
+   "reference": {
+    "file": "src/xrpld/app/main/Application.cpp",
+    "absent_pattern": "Load all ledgers that are present in the db",
+    "hits": 0
+   }
+  },
+  "E27": {
+   "sha256": "29cb123428fc99b86c425472bc2af0429c645133aa5f2bd6173249f4969161cd",
+   "file": "src/xrpld/app/tx/detail/Change.cpp",
+   "lines": "344-350",
+   "blob_sha": "9079934b0434c4a43e3979e0d257b29962d1c132",
+   "blob_size": 25990,
+   "reference": {
+    "file": "src/xrpld/app/tx/detail/Change.cpp",
+    "lines": "314-320",
+    "blob_sha": "f78eaf0f614ba52681f41472e54aa72d4171adf3",
+    "blob_size": 16547
+   }
+  },
+  "E28": {
+   "sha256": "13a00e96c85c7716fb99ee77f6edf11dc81f8cba97b629a3c016d5633c95dd93",
+   "file": "include/xrpl/protocol/detail/transactions.macro",
+   "lines": "1131-1150",
+   "blob_sha": "4ed5336f3dddf4e3a962979ae6353277d750be15",
+   "blob_size": 32505,
+   "reference": {
+    "file": "include/xrpl/protocol/detail/transactions.macro",
+    "absent_pattern": "ttVALIDATOR_VOTE",
+    "hits": 0
+   }
+  },
+  "E29": {
+   "sha256": "a24a1fb59b0556934c676c43b752398b34cc3db5c10785520f7b06b3fb01dbf8",
+   "file": "include/xrpl/protocol/detail/ledger_entries.macro",
+   "lines": "510-530",
+   "blob_sha": "ba9a2e6d0ed19113b580f8a603d7f6082f65269f",
+   "blob_size": 24140,
+   "reference": {
+    "file": "include/xrpl/protocol/detail/ledger_entries.macro",
+    "lines": "511-515",
+    "blob_sha": "3e17f33c24d878ee5f66cb2c7ee10863dae36761",
+    "blob_size": 23546
+   }
+  },
+  "E30": {
+   "sha256": "bd489475f3c4eae0a808c41beef5b57961881cef67129a712b1cef9c76b88f5c",
+   "file": "src/xrpld/app/tx/detail/Change.cpp",
+   "lines": "548-560",
+   "blob_sha": "9079934b0434c4a43e3979e0d257b29962d1c132",
+   "blob_size": 25990,
+   "reference": {
+    "file": "src/xrpld/app/tx/detail/Change.cpp",
+    "absent_pattern": "applyValidatorVote",
+    "hits": 0
+   }
+  },
+  "E31": {
+   "sha256": "4f6f329a59241c7e5d87882ea791af25e729a38da94f9d3260f77c0058b02433",
+   "file": "src/xrpld/app/tx/detail/Transactor.cpp",
+   "lines": "190-215",
+   "blob_sha": "fb84c40ff2e300e756bee1b4e3d3b995c44d343d",
+   "blob_size": 46576,
+   "reference": {
+    "file": "src/xrpld/app/tx/detail/Transactor.cpp",
+    "lines": "189-195",
+    "blob_sha": "fdc0c48cef7b955f09c545255fc49a8837c4ed88",
+    "blob_size": 45788
+   }
+  },
+  "E32": {
+   "sha256": "8a0ffd52739f3e10113b712fd32ec45eed8fea70c263662b07a3b50b14750c31",
+   "file": "include/xrpl/protocol/detail/sfields.macro",
+   "lines": "348-349",
+   "blob_sha": "e6797d24f5229a28077360e7949713a6368f7e60",
+   "blob_size": 23119,
+   "reference": {
+    "file": "include/xrpl/protocol/detail/sfields.macro",
+    "absent_pattern": "sfExclusionAdd",
+    "hits": 0
+   }
+  },
+  "E33": {
+   "sha256": "0666ba8a87a078565604f93b0c3cdbe39eb05b05bb5c963e2b2533adb4341892",
+   "file": "include/xrpl/protocol/Protocol.h",
+   "lines": "236-238",
+   "blob_sha": "b140390fc712ca00902db7248cfcc928e9cd32cf",
+   "blob_size": 11615,
+   "reference": {
+    "file": "include/xrpl/protocol/Protocol.h",
+    "absent_pattern": "maxExclusionListSize",
+    "hits": 0
+   }
+  },
+  "E34": {
+   "sha256": "3ea773c673f75d9683461619c8f60a4124790f26dc4904980f1dbbdf64c51298",
+   "file": "include/xrpl/protocol/detail/features.macro",
+   "lines": "45-46",
+   "blob_sha": "a88ebd1a492b9b5d658bde9c5f2835094536b244",
+   "blob_size": 10479,
+   "reference": {
+    "file": "include/xrpl/protocol/detail/features.macro",
+    "lines": "42-46",
+    "blob_sha": "463f2a983b5e06fd38f0564cc75f480d26f3fd88",
+    "blob_size": 10279
+   }
+  },
+  "E35": {
+   "sha256": "9b71ecba0855fd0728693a91b54a112b5567a5aaaaae6eff61be5f3ca076c8f4",
+   "file": "include/xrpl/protocol/detail/features.macro",
+   "lines": "47-100",
+   "blob_sha": "a88ebd1a492b9b5d658bde9c5f2835094536b244",
+   "blob_size": 10479,
+   "reference": {
+    "file": "include/xrpl/protocol/detail/features.macro",
+    "lines": "42-100",
+    "blob_sha": "463f2a983b5e06fd38f0564cc75f480d26f3fd88",
+    "blob_size": 10279
+   }
+  },
+  "E36": {
+   "sha256": "d81fd086052c1ae7986225eaa07dfb12a4797dee4936b0c4eb20777f1e2a3f6a",
+   "file": "include/xrpl/basics/MathUtilities.h",
+   "lines": "26-60",
+   "blob_sha": "1aa627c48329146db8647adc367f946bcfbac336",
+   "blob_size": 5699,
+   "reference": {
+    "file": "include/xrpl/basics/MathUtilities.h",
+    "absent_pattern": "checkedAdd",
+    "hits": 0
+   }
+  },
+  "E37": {
+   "sha256": "5eb68644434f3eb65ed70e0b59dd37bb15d12f6ff2753512e0685355813ea9af",
+   "file": "src/libxrpl/ledger/View.cpp",
+   "lines": "2476-2482",
+   "blob_sha": "2a1cb0cab5cb95a643ff1d0322192868b0aeb55f",
+   "blob_size": 123511,
+   "reference": {
+    "file": "src/libxrpl/ledger/View.cpp",
+    "lines": "2475-2480",
+    "blob_sha": "d797d17fea974f0e17f17e5a403761e12bf30d4b",
+    "blob_size": 122926
+   }
+  },
+  "E38": {
+   "sha256": "bbbde67af0b1c5809f2012c795c5af6c9ca7c44f1e4c37e4413189638352df37",
+   "file": "src/xrpld/app/paths/detail/Steps.h",
+   "lines": "526-575",
+   "blob_sha": "6936dac16dc784e3a0001b6047e81bcefe7c1836",
+   "blob_size": 22597,
+   "reference": {
+    "file": "src/xrpld/app/paths/detail/Steps.h",
+    "absent_pattern": "checkedStepAdd",
+    "hits": 0
+   }
+  },
+  "E39": {
+   "sha256": "9a1cb45a80a0d000f8f820e828413335cfcb9c688f6589f488530dd46d01c4a6",
+   "file": "src/xrpld/app/tx/detail/InvariantCheck.h",
+   "lines": "121-126",
+   "blob_sha": "327f98541e72ec22810be96c986f704fdbfbb60c",
+   "blob_size": 24799,
+   "reference": {
+    "file": "src/xrpld/app/tx/detail/InvariantCheck.h",
+    "lines": "121-124",
+    "blob_sha": "0bef7fe3cb7a83df088217ddf7239beed802a281",
+    "blob_size": 24619
+   }
+  },
+  "E40": {
+   "sha256": "ebf2e79119874419a5def5f488fea9b46748d8f8a76ee4afc5b70187528bef2d",
+   "file": "src/xrpld/app/tx/detail/InvariantCheck.cpp",
+   "lines": "1066-1072",
+   "blob_sha": "07272b28582e33f656e3fb022a92c14c7d8ca4a8",
+   "blob_size": 118967,
+   "reference": {
+    "file": "src/xrpld/app/tx/detail/InvariantCheck.cpp",
+    "lines": "1063-1068",
+    "blob_sha": "9dec9212781a9f4c5a288a1e95de249639736671",
+    "blob_size": 118794
+   }
+  },
+  "E41": {
+   "sha256": "2a81c9d87a9405cad8729f22942ea0890fb620dd6ac8055d8439e37d1cc070f4",
+   "file": "src/libxrpl/protocol/STObject.cpp",
+   "lines": "240-290",
+   "blob_sha": "4b7aafdacb2573453a2014654587d6ace0267454",
+   "blob_size": 22870,
+   "reference": {
+    "file": "src/libxrpl/protocol/STObject.cpp",
+    "lines": "233-250",
+    "blob_sha": "b015c9a9a7b9bf1588d475441af08eed9b2d3792",
+    "blob_size": 22359
+   }
+  },
+  "E42": {
+   "sha256": "269e800bf244c72862ec0859a7cc155a301ffcb317afec7d0024ef2be1fd5912",
+   "file": "src/libxrpl/protocol/Serializer.cpp",
+   "lines": "230-250",
+   "blob_sha": "ec7cc526665c2b005ebccb4fa68e01a5e0c18bb0",
+   "blob_size": 12348,
+   "reference": {
+    "file": "src/libxrpl/protocol/Serializer.cpp",
+    "lines": "230-248",
+    "blob_sha": "098e68d2b21a02a354499269f76d0d67bfde3dc4",
+    "blob_size": 11938
+   }
+  },
+  "E43": {
+   "sha256": "6c282cce6e4d6fd68023019d0aa67659764201011f4cb19af28e1771f738ed88",
+   "file": "include/xrpl/protocol/STParsedJSON.h",
+   "lines": "29-34",
+   "blob_sha": "3ca4881de0da436fffa3d0e3ad75e3238e6f2944",
+   "blob_size": 2500,
+   "reference": {
+    "file": "include/xrpl/protocol/STParsedJSON.h",
+    "lines": "26-32",
+    "blob_sha": "9c770fe94d2f5f935ac65d381737728c142b66b1",
+    "blob_size": 2154
+   }
+  },
+  "E44": {
+   "sha256": "27382bb72f6c3fbdf997ecac7790befa84e69956c80d9e90ce2a6cd957e13851",
+   "file": "src/xrpld/app/main/Application.cpp",
+   "lines": "1295-1307",
+   "blob_sha": "e6ca17172f5213cc5e7c51df9a546a587f62e607",
+   "blob_size": 68679,
+   "reference": {
+    "file": "src/xrpld/app/main/Application.cpp",
+    "absent_pattern": "ValidatorVoteTracker",
+    "hits": 0
+   }
+  }
+ }
+}
