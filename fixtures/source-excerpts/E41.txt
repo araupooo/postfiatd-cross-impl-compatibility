@@ -1,0 +1,85 @@
+# Source excerpt E41 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55 vs rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c).
+# File: src/libxrpl/protocol/STObject.cpp, lines 240-290.
+# Line numbers verified with grep -n on local checkouts of the pinned commits.
+# Source file SHA-256: 13e609b93680f74ca70ec2516248589a44a1fa91654139c46ae9b31361c07ed6
+# Source file git blob SHA: 4b7aafdacb2573453a2014654587d6ace0267454
+# Source file size: 22870 bytes
+
+# --- src/libxrpl/protocol/STObject.cpp lines 240-290 ---
+STObject::set(SerialIter& sit, int depth, bool requireCanonicalOrder)
+{
+    bool reachedEndOfObject = false;
+
+    v_.clear();
+
+    std::optional<int> prevFieldCode;
+    // Consume data in the pipe until we run out or reach the end
+    while (!sit.empty())
+    {
+        int type;
+        int field;
+
+        // Get the metadata for the next field
+        sit.getFieldID(type, field);
+
+        // The object termination marker has been found and the termination
+        // marker has been consumed. Done deserializing.
+        if (type == STI_OBJECT && field == 1)
+        {
+            reachedEndOfObject = true;
+            break;
+        }
+
+        if (type == STI_ARRAY && field == 1)
+        {
+            JLOG(debugLog().error())
+                << "Encountered object with embedded end-of-array marker";
+            Throw<std::runtime_error>("Illegal end-of-array marker in object");
+        }
+
+        auto const& fn = SField::getField(type, field);
+        if (fn.isInvalid())
+        {
+            JLOG(debugLog().error()) << "Unknown field: field_type=" << type
+                                     << ", field_name=" << field;
+            Throw<std::runtime_error>("Unknown field");
+        }
+
+        if (requireCanonicalOrder && prevFieldCode.has_value() &&
+            fn.fieldCode <= *prevFieldCode)
+        {
+            JLOG(debugLog().error())
+                << "Fields in object are not in canonical order";
+            Throw<std::runtime_error>(
+                "Fields in object are not in canonical order");
+        }
+        prevFieldCode = fn.fieldCode;
+
+        // Unflatten the field
+        v_.emplace_back(sit, fn, depth + 1);
+
+# --- rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c) ---
+# File: src/libxrpl/protocol/STObject.cpp, lines 233-250.
+# Source file SHA-256: 583fe15aed84be431c43a5bf661bc2b3b21a44b2aaa40d6f2d7016e990d19481
+# Source file git blob SHA: b015c9a9a7b9bf1588d475441af08eed9b2d3792
+# Source file size: 22359 bytes
+
+# --- src/libxrpl/protocol/STObject.cpp lines 233-250 ---
+
+// return true = terminated with end-of-object
+bool
+STObject::set(SerialIter& sit, int depth)
+{
+    bool reachedEndOfObject = false;
+
+    v_.clear();
+
+    // Consume data in the pipe until we run out or reach the end
+    while (!sit.empty())
+    {
+        int type;
+        int field;
+
+        // Get the metadata for the next field
+        sit.getFieldID(type, field);
+

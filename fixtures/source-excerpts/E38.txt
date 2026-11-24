@@ -1,0 +1,61 @@
+# Source excerpt E38 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55 vs rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c).
+# File: src/xrpld/app/paths/detail/Steps.h, lines 526-575.
+# Line numbers verified with grep -n on local checkouts of the pinned commits.
+# Source file SHA-256: b9971af094316ed1148d8d584eb2f5ed43731980068c2a39adb762e084c7d7d8
+# Source file git blob SHA: 6936dac16dc784e3a0001b6047e81bcefe7c1836
+# Source file size: 22597 bytes
+
+# --- src/xrpld/app/paths/detail/Steps.h lines 526-575 ---
+/** Add two amounts of a strand, or std::nullopt when the exact sum does not
+    fit the amount type. */
+template <class T>
+[[nodiscard]] std::optional<T>
+checkedStepAddOpt(T const& lhs, T const& rhs)
+{
+    if constexpr (std::is_same_v<T, XRPAmount>)
+    {
+        if (auto const r = checkedAdd(lhs.drops(), rhs.drops()))
+            return XRPAmount{*r};
+        return std::nullopt;
+    }
+    else if constexpr (std::is_same_v<T, MPTAmount>)
+    {
+        if (auto const r = checkedAdd(lhs.value(), rhs.value()))
+            return MPTAmount{*r};
+        return std::nullopt;
+    }
+    else if constexpr (std::is_same_v<T, IOUAmount>)
+    {
+        // IOUAmount is Number-backed and throws on overflow.
+        IOUAmount sum{lhs};
+        sum += rhs;
+        return sum;
+    }
+    else
+    {
+        // A new amount type must decide explicitly how to add; do not fall back
+        // to an unchecked add.
+        static_assert(
+            sizeof(T) == 0, "checkedStepAddOpt: unsupported amount type");
+    }
+}
+
+/** Add two amounts of a strand; an overflow ends the strand as a dry path. */
+template <class T>
+[[nodiscard]] T
+checkedStepAdd(T const& lhs, T const& rhs)
+{
+    if (auto const r = checkedStepAddOpt(lhs, rhs))
+        return *r;
+    Throw<FlowException>(tecPATH_DRY);
+}
+/// @endcond
+
+/// @cond INTERNAL
+// Check equal with tolerance
+bool
+checkNear(IOUAmount const& expected, IOUAmount const& actual);
+bool
+
+# --- rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c) ---
+# No corresponding code in rippled 3.1.2: grep for 'checkedStepAdd' in src/xrpld/app/paths/detail/Steps.h returns 0 hits.

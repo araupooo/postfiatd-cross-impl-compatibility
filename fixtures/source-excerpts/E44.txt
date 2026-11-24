@@ -1,0 +1,24 @@
+# Source excerpt E44 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55 vs rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c).
+# File: src/xrpld/app/main/Application.cpp, lines 1295-1307.
+# Line numbers verified with grep -n on local checkouts of the pinned commits.
+# Source file SHA-256: ce51509895eb4f27d42dd0d86fb49df0806301810867c383d4836405da2a7d65
+# Source file git blob SHA: e6ca17172f5213cc5e7c51df9a546a587f62e607
+# Source file size: 68679 bytes
+
+# --- src/xrpld/app/main/Application.cpp lines 1295-1307 ---
+    // Initialize ValidatorVoteTracker
+    m_validatorVoteTracker = std::make_unique<ValidatorVoteTracker>(
+        *this,
+        logs_->journal("ValidatorVoteTracker"));
+
+    // Initialize ExclusionManager
+    m_exclusionManager = std::make_unique<ExclusionManager>(*this);
+
+    // Initialize ValidatorExclusionManager
+    m_validatorExclusionManager = std::make_unique<ValidatorExclusionManager>(
+        *this, *config_, logs_->journal("ValidatorExclusionManager"));
+
+    Pathfinder::initPathTable();
+
+# --- rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c) ---
+# No corresponding code in rippled 3.1.2: grep for 'ValidatorVoteTracker' in src/xrpld/app/main/Application.cpp returns 0 hits.

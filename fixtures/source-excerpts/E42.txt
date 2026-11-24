@@ -1,0 +1,56 @@
+# Source excerpt E42 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55 vs rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c).
+# File: src/libxrpl/protocol/Serializer.cpp, lines 230-250.
+# Line numbers verified with grep -n on local checkouts of the pinned commits.
+# Source file SHA-256: 5e8a56c5153ea929df7bc1eaae591a14e16724b6fe2dfe2382ab47ecabb4e7b1
+# Source file git blob SHA: ec7cc526665c2b005ebccb4fa68e01a5e0c18bb0
+# Source file size: 12348 bytes
+
+# --- src/libxrpl/protocol/Serializer.cpp lines 230-250 ---
+    std::array<std::uint8_t, 4> bytes;
+    int numBytes = 0;
+
+    // A negative length would otherwise be cast into a one-byte header no
+    // decoder accepts. Sizes above INT_MAX arrive here negative as well.
+    if (length < 0)
+        Throw<std::overflow_error>("len<0");
+
+    if (length <= 192)
+    {
+        bytes[0] = static_cast<unsigned char>(length);
+        numBytes = 1;
+    }
+    else if (length <= 12480)
+    {
+        length -= 193;
+        bytes[0] = 193 + static_cast<unsigned char>(length >> 8);
+        bytes[1] = static_cast<unsigned char>(length & 0xff);
+        numBytes = 2;
+    }
+    else if (length <= maxVLLength)
+
+# --- rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c) ---
+# File: src/libxrpl/protocol/Serializer.cpp, lines 230-248.
+# Source file SHA-256: 3edcf08843506ce77418a4dc30d706ee657b0cc0f00f72fceb7f5c4136fa3e67
+# Source file git blob SHA: 098e68d2b21a02a354499269f76d0d67bfde3dc4
+# Source file size: 11938 bytes
+
+# --- src/libxrpl/protocol/Serializer.cpp lines 230-248 ---
+    std::array<std::uint8_t, 4> bytes;
+    int numBytes = 0;
+
+    if (length <= 192)
+    {
+        bytes[0] = static_cast<unsigned char>(length);
+        numBytes = 1;
+    }
+    else if (length <= 12480)
+    {
+        length -= 193;
+        bytes[0] = 193 + static_cast<unsigned char>(length >> 8);
+        bytes[1] = static_cast<unsigned char>(length & 0xff);
+        numBytes = 2;
+    }
+    else if (length <= 918744)
+    {
+        length -= 12481;
+        bytes[0] = 241 + static_cast<unsigned char>(length >> 16);

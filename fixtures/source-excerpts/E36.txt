@@ -1,0 +1,46 @@
+# Source excerpt E36 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55 vs rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c).
+# File: include/xrpl/basics/MathUtilities.h, lines 26-60.
+# Line numbers verified with grep -n on local checkouts of the pinned commits.
+# Source file SHA-256: e48632d7140e977a61fba11791a7047232f1c9de2b3ac3342049495b1e93711c
+# Source file git blob SHA: 1aa627c48329146db8647adc367f946bcfbac336
+# Source file size: 5699 bytes
+
+# --- include/xrpl/basics/MathUtilities.h lines 26-60 ---
+#include <cstdint>
+#include <limits>
+#include <optional>
+
+namespace ripple {
+
+/**
+ * Add two signed 64-bit integers, returning std::nullopt when the exact
+ * mathematical sum is not representable in std::int64_t.
+ */
+[[nodiscard]] constexpr std::optional<std::int64_t>
+checkedAdd(std::int64_t a, std::int64_t b) noexcept
+{
+    using L = std::numeric_limits<std::int64_t>;
+
+    if ((b > 0 && a > L::max() - b) || (b < 0 && a < L::min() - b))
+        return std::nullopt;
+
+    return a + b;
+}
+
+/**
+ * Subtract two signed 64-bit integers, returning std::nullopt when the exact
+ * mathematical difference is not representable in std::int64_t.
+ */
+[[nodiscard]] constexpr std::optional<std::int64_t>
+checkedSub(std::int64_t a, std::int64_t b) noexcept
+{
+    using L = std::numeric_limits<std::int64_t>;
+
+    if ((b > 0 && a < L::min() + b) || (b < 0 && a > L::max() + b))
+        return std::nullopt;
+
+    return a - b;
+}
+
+# --- rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c) ---
+# No corresponding code in rippled 3.1.2: grep for 'checkedAdd' in include/xrpl/basics/MathUtilities.h returns 0 hits.

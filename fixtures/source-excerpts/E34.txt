@@ -1,0 +1,23 @@
+# Source excerpt E34 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55 vs rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c).
+# File: include/xrpl/protocol/detail/features.macro, lines 45-46.
+# Line numbers verified with grep -n on local checkouts of the pinned commits.
+# Source file SHA-256: c564926fa081d8ef09f65976f66f8e712cecf58ee1c68e0abf58345eea00e772
+# Source file git blob SHA: a88ebd1a492b9b5d658bde9c5f2835094536b244
+# Source file size: 10479 bytes
+
+# --- include/xrpl/protocol/detail/features.macro lines 45-46 ---
+XRPL_FEATURE(PF_AccountExclusion,        Supported::yes, VoteBehavior::DefaultNo)
+XRPL_FEATURE(PF_ValidatorVoteTracking,   Supported::yes, VoteBehavior::DefaultNo)
+
+# --- rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c) ---
+# File: include/xrpl/protocol/detail/features.macro, lines 42-46.
+# Source file SHA-256: 2ce615cfe1c3d030435b67a5293edc37ae366af336160405fd6a3c1cc41f2532
+# Source file git blob SHA: 463f2a983b5e06fd38f0564cc75f480d26f3fd88
+# Source file size: 10279 bytes
+
+# --- include/xrpl/protocol/detail/features.macro lines 42-46 ---
+XRPL_FIX    (PriceOracleOrder,           Supported::yes, VoteBehavior::DefaultNo)
+XRPL_FIX    (MPTDeliveredAmount,         Supported::yes, VoteBehavior::DefaultNo)
+XRPL_FIX    (AMMClawbackRounding,        Supported::yes, VoteBehavior::DefaultNo)
+XRPL_FEATURE(TokenEscrow,                Supported::yes, VoteBehavior::DefaultNo)
+XRPL_FIX    (EnforceNFTokenTrustlineV2,  Supported::yes, VoteBehavior::DefaultNo)

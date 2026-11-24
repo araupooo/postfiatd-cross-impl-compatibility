@@ -1,0 +1,29 @@
+# Source excerpt E37 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55 vs rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c).
+# File: src/libxrpl/ledger/View.cpp, lines 2476-2482.
+# Line numbers verified with grep -n on local checkouts of the pinned commits.
+# Source file SHA-256: a2457d6e70129bf87e9b4fc27b96ba121302d3954609a9de7c496b22fe415b70
+# Source file git blob SHA: 2a1cb0cab5cb95a643ff1d0322192868b0aeb55f
+# Source file size: 123511 bytes
+
+# --- src/libxrpl/ledger/View.cpp lines 2476-2482 ---
+
+        if (receiver)
+        {
+            // Confirm the running debit will not overflow before crediting.
+            if (!checkedAdd(takeFromSender.xrp().drops(), amount.xrp().drops()))
+                return tecINTERNAL;
+
+
+# --- rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c) ---
+# File: src/libxrpl/ledger/View.cpp, lines 2475-2480.
+# Source file SHA-256: eddef48b87eb703850e82df8a5564f618722c7b98d9d21a1d0c0fc5abf96fc31
+# Source file git blob SHA: d797d17fea974f0e17f17e5a403761e12bf30d4b
+# Source file size: 122926 bytes
+
+# --- src/libxrpl/ledger/View.cpp lines 2475-2480 ---
+
+        if (receiver)
+        {
+            // Increment XRP balance.
+            auto const rcvBal = receiver->getFieldAmount(sfBalance);
+            receiver->setFieldAmount(sfBalance, rcvBal + amount);

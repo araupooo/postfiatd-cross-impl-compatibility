@@ -1,0 +1,29 @@
+# Source excerpt E43 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55 vs rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c).
+# File: include/xrpl/protocol/STParsedJSON.h, lines 29-34.
+# Line numbers verified with grep -n on local checkouts of the pinned commits.
+# Source file SHA-256: a1c9df5846589f294466a0b40caa6671bb28e27eaf4825b2f68080cb7650eef5
+# Source file git blob SHA: 3ca4881de0da436fffa3d0e3ad75e3238e6f2944
+# Source file size: 2500 bytes
+
+# --- include/xrpl/protocol/STParsedJSON.h lines 29-34 ---
+/** Maximum JSON object nesting depth permitted during parsing. */
+inline constexpr std::size_t maxSTParsedJSONDepth = 64;
+
+/** Maximum number of elements permitted in any JSON array field during parsing.
+    Requests exceeding this limit are rejected with an invalidParams error. */
+inline constexpr std::size_t maxSTParsedJSONArraySize = 512;
+
+# --- rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c) ---
+# File: include/xrpl/protocol/STParsedJSON.h, lines 26-32.
+# Source file SHA-256: 8d7b9c02bd4f836852fb8f06fb0248d627f68bea29b35af24e27f75f44a85f7a
+# Source file git blob SHA: 9c770fe94d2f5f935ac65d381737728c142b66b1
+# Source file size: 2154 bytes
+
+# --- include/xrpl/protocol/STParsedJSON.h lines 26-32 ---
+
+namespace ripple {
+
+/** Holds the serialized result of parsing an input JSON object.
+    This does validation and checking on the provided JSON.
+*/
+class STParsedJSONObject
