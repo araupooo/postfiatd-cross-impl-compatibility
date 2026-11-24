@@ -1,0 +1,414 @@
+{
+ "constants": {
+  "absolute_minimum_quorum_pct": 60,
+  "amendment_majority_postfiatd": 67,
+  "amendment_majority_rippled": 80,
+  "earliest_ledger_seq_postfiatd": 1,
+  "earliest_ledger_seq_rippled": 32570,
+  "fee_malformed_data": 2000,
+  "max_exclusion_list_size": 100,
+  "max_json_array_size": 512,
+  "max_json_depth": 64,
+  "max_untrusted_manifests": 1000,
+  "max_vl_length": 918744,
+  "min_consensus_pct_postfiatd": 67,
+  "min_consensus_pct_rippled": 80,
+  "pause_phase_thresholds_postfiatd": [
+   67,
+   75,
+   83,
+   92,
+   100
+  ],
+  "pause_phase_thresholds_rippled": [
+   80,
+   85,
+   90,
+   95,
+   100
+  ],
+  "shamap_leaf_depth": 64,
+  "validator_quorum_pct_postfiatd": 67,
+  "validator_quorum_pct_rippled": 80,
+  "validator_vote_stats_type": 138,
+  "validator_vote_tx_type": 1501
+ },
+ "pack": "Cross-Implementation Compatibility: postfiatd vs rippled 3.1.2",
+ "pinned_commit": "0085a1ff885d6a446369cf73a4430f75af22be55",
+ "rippled_commit": "3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c",
+ "rippled_tag": "3.1.2",
+ "scenarios": [
+  {
+   "id": "S-01",
+   "runs": [
+    {
+     "events": [
+      {
+       "round": 0,
+       "text": "100 validators on the UNL; 70 agree on the ledger"
+      }
+     ],
+     "kind": "quorum",
+     "label": "A",
+     "params": {
+      "validators_agreeing": 70,
+      "validators_total": 100
+     },
+     "title": "70 of 100 validators agree on the ledger"
+    },
+    {
+     "events": [
+      {
+       "round": 0,
+       "text": "100 validators on the UNL; 85 agree on the ledger"
+      }
+     ],
+     "kind": "quorum",
+     "label": "B",
+     "params": {
+      "validators_agreeing": 85,
+      "validators_total": 100
+     },
+     "title": "85 of 100 validators agree on the ledger"
+    }
+   ],
+   "title": "Consensus quorum: 70 of 100 validators agree"
+  },
+  {
+   "id": "S-02",
+   "runs": [
+    {
+     "events": [
+      {
+       "round": 0,
+       "text": "an amendment holds 70% support for the full two-week majority window"
+      }
+     ],
+     "kind": "amendment",
+     "label": "A",
+     "params": {
+      "validators_total": 100,
+      "votes_for_pct": 70,
+      "weeks": 2
+     },
+     "title": "70% of validators vote for the amendment"
+    },
+    {
+     "events": [
+      {
+       "round": 0,
+       "text": "an amendment holds 85% support for the full two-week majority window"
+      }
+     ],
+     "kind": "amendment",
+     "label": "B",
+     "params": {
+      "validators_total": 100,
+      "votes_for_pct": 85,
+      "weeks": 2
+     },
+     "title": "85% of validators vote for the amendment"
+    }
+   ],
+   "title": "Amendment majority: 70% vote for an amendment for two weeks"
+  },
+  {
+   "id": "S-03",
+   "runs": [
+    {
+     "events": [
+      {
+       "round": 0,
+       "text": "10 peers report close times: nine at 1000, one at 1120"
+      }
+     ],
+     "kind": "close_offset",
+     "label": "A",
+     "params": {
+      "peer_times": [
+       [
+        1000,
+        9
+       ],
+       [
+        1120,
+        1
+       ]
+      ],
+      "self_time": 1000
+     },
+     "title": "one peer 120 seconds off, the rest on time"
+    },
+    {
+     "events": [
+      {
+       "round": 0,
+       "text": "10 peers report close times: all ten at 1000"
+      }
+     ],
+     "kind": "close_offset",
+     "label": "B",
+     "params": {
+      "peer_times": [
+       [
+        1000,
+        10
+       ]
+      ],
+      "self_time": 1000
+     },
+     "title": "all peers on time"
+    }
+   ],
+   "title": "Close-time offset: one peer reports a close time 120 seconds off"
+  },
+  {
+   "id": "S-04",
+   "runs": [
+    {
+     "events": [
+      {
+       "round": 0,
+       "text": "close-time votes: 1000 has 5, 1005 has 5; both meet the threshold"
+      }
+     ],
+     "kind": "tie_break",
+     "label": "A",
+     "params": {
+      "bins": [
+       [
+        1000,
+        5
+       ],
+       [
+        1005,
+        5
+       ]
+      ],
+      "threshold": 5
+     },
+     "title": "bins 1000 and 1005 tie at 5 votes each"
+    }
+   ],
+   "title": "Close-time tie-break: two close-time bins tie for the most votes"
+  },
+  {
+   "id": "S-05",
+   "runs": [
+    {
+     "events": [
+      {
+       "round": 0,
+       "text": "70% of trusted validators have moved on to the next ledger"
+      }
+     ],
+     "kind": "pause_phase",
+     "label": "A",
+     "params": {
+      "validators_moved_on_pct": 70
+     },
+     "title": "70% of validators have moved on"
+    },
+    {
+     "events": [
+      {
+       "round": 0,
+       "text": "90% of trusted validators have moved on to the next ledger"
+      }
+     ],
+     "kind": "pause_phase",
+     "label": "B",
+     "params": {
+      "validators_moved_on_pct": 90
+     },
+     "title": "90% of validators have moved on"
+    }
+   ],
+   "title": "Pause phases: 70% of validators have moved on"
+  },
+  {
+   "id": "S-06",
+   "runs": [
+    {
+     "events": [
+      {
+       "round": 0,
+       "text": "ledger N+1 carries a ttVALIDATOR_VOTE pseudo-transaction for a validator that voted on ledger N"
+      }
+     ],
+     "kind": "pseudo_tx",
+     "label": "A",
+     "params": {
+      "amendment_enabled": true,
+      "tx_type": "ttVALIDATOR_VOTE"
+     },
+     "title": "a ttVALIDATOR_VOTE pseudo-transaction is included in ledger N+1"
+    }
+   ],
+   "title": "Validator vote pseudo-transaction in the next ledger"
+  },
+  {
+   "id": "S-07",
+   "runs": [
+    {
+     "events": [
+      {
+       "round": 0,
+       "text": "a transaction arrives whose sender account is on the consensus exclusion list"
+      }
+     ],
+     "kind": "exclusion",
+     "label": "A",
+     "params": {
+      "account_excluded": true,
+      "tx_direction": "source"
+     },
+     "title": "an excluded account is the sender"
+    }
+   ],
+   "title": "Excluded account submits a transaction"
+  },
+  {
+   "id": "S-08",
+   "runs": [
+    {
+     "events": [
+      {
+       "round": 0,
+       "text": "a trusted validator's validation carries sfExclusionAdd for one account"
+      }
+     ],
+     "kind": "validation_fields",
+     "label": "A",
+     "params": {
+      "has_exclusion_fields": true
+     },
+     "title": "a validation carries sfExclusionAdd"
+    }
+   ],
+   "title": "Validation carrying exclusion fields reaches a peer"
+  },
+  {
+   "id": "S-09",
+   "runs": [
+    {
+     "events": [
+      {
+       "round": 0,
+       "text": "a fresh node starts on network ID 2025 in production mode"
+      }
+     ],
+     "kind": "genesis",
+     "label": "A",
+     "params": {
+      "network_id": 2025,
+      "standalone": false
+     },
+     "title": "network 2025, production mode"
+    },
+    {
+     "events": [
+      {
+       "round": 0,
+       "text": "a fresh node starts on network ID 2025 in standalone mode"
+      }
+     ],
+     "kind": "genesis",
+     "label": "B",
+     "params": {
+      "network_id": 2025,
+      "standalone": true
+     },
+     "title": "network 2025, standalone mode"
+    }
+   ],
+   "title": "Genesis ledger on network 2025"
+  },
+  {
+   "id": "S-10",
+   "runs": [
+    {
+     "events": [
+      {
+       "round": 0,
+       "text": "a peer-supplied ledger-data node ID arrives with depth 70; the leaf depth is 64"
+      }
+     ],
+     "kind": "shamap_depth",
+     "label": "A",
+     "params": {
+      "depth": 70,
+      "leaf_depth": 64
+     },
+     "title": "peer-supplied node ID depth 70 (leaf depth 64)"
+    }
+   ],
+   "title": "SHAMap node ID with an out-of-range depth"
+  },
+  {
+   "id": "S-11",
+   "runs": [
+    {
+     "events": [
+      {
+       "round": 0,
+       "text": "a payment strand adds 9223372036854775800 and 100 drops"
+      }
+     ],
+     "kind": "payment_overflow",
+     "label": "A",
+     "params": {
+      "amounts": [
+       9223372036854775800,
+       100
+      ],
+      "int64_max": 9223372036854775807
+     },
+     "title": "two strand amounts sum past int64 max"
+    }
+   ],
+   "title": "Payment strand sum overflows int64"
+  },
+  {
+   "id": "S-12",
+   "runs": [
+    {
+     "events": [
+      {
+       "round": 0,
+       "text": "a submitted transaction carries a JSON array field with 600 elements"
+      }
+     ],
+     "kind": "json_array",
+     "label": "A",
+     "params": {
+      "array_size": 600
+     },
+     "title": "600-element array field in a submitted transaction"
+    }
+   ],
+   "title": "JSON transaction with a 600-element array field"
+  },
+  {
+   "id": "S-13",
+   "runs": [
+    {
+     "events": [
+      {
+       "round": 0,
+       "text": "1,500 manifests from master keys on no validator list arrive by peer gossip"
+      }
+     ],
+     "kind": "manifest_flood",
+     "label": "A",
+     "params": {
+      "unlisted_manifests": 1500
+     },
+     "title": "1,500 unlisted manifests arrive by peer gossip"
+    }
+   ],
+   "title": "Manifest flood: 1,500 unlisted validator manifests gossiped"
+  }
+ ],
+ "schema_version": 1
+}

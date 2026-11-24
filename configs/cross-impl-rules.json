@@ -1,0 +1,778 @@
+{
+ "pack": "Cross-Implementation Compatibility: postfiatd vs rippled 3.1.2",
+ "pinned_commit": "0085a1ff885d6a446369cf73a4430f75af22be55",
+ "rippled_commit": "3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c",
+ "rippled_tag": "3.1.2",
+ "rules": [
+  {
+   "excerpt": null,
+   "external": {
+    "quote": "Current postfiatd base: 3.0.0 (commit 46167f7c54, tag upgrade-checkpoint-3.0.0). Target: 3.1.2 (tag 3.1.2). Total upstream commits: 21",
+    "url": "https://github.com/postfiatorg/postfiatd/blob/0085a1ff885d6a446369cf73a4430f75af22be55/docs/upstream-merge-3.1.2-analysis.md"
+   },
+   "id": "R-01",
+   "source": null,
+   "status": "SPECIFIED",
+   "title": "The rippled reference base is 3.1.2: postfiatd's own merge analysis records 21 upstream commits from 3.0.0 to 3.1.2"
+  },
+  {
+   "excerpt": null,
+   "external": {
+    "quote": "release: Bump version to 3.1.2",
+    "url": "https://github.com/XRPLF/rippled/releases/tag/3.1.2"
+   },
+   "id": "R-02",
+   "source": null,
+   "status": "SPECIFIED",
+   "title": "Rippled 3.1.2 was released 2026-03-12 at commit 3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c"
+  },
+  {
+   "excerpt": "E01",
+   "id": "R-03",
+   "reference": {
+    "anchor": "minCONSENSUS_PCT = 80",
+    "end_line": 79,
+    "file": "src/xrpld/consensus/ConsensusParms.h",
+    "repo": "rippled",
+    "start_line": 79
+   },
+   "source": {
+    "anchor": "minCONSENSUS_PCT = 67",
+    "end_line": 79,
+    "file": "src/xrpld/consensus/ConsensusParms.h",
+    "start_line": 79
+   },
+   "status": "VERIFIED",
+   "title": "Consensus requires 67% agreement in postfiatd, 80% in rippled"
+  },
+  {
+   "excerpt": "E02",
+   "id": "R-04",
+   "reference": {
+    "anchor": "80% quorum",
+    "end_line": 1886,
+    "file": "src/xrpld/app/misc/detail/ValidatorList.cpp",
+    "repo": "rippled",
+    "start_line": 1883
+   },
+   "source": {
+    "anchor": "67% quorum",
+    "end_line": 1900,
+    "file": "src/xrpld/app/misc/detail/ValidatorList.cpp",
+    "start_line": 1897
+   },
+   "status": "VERIFIED",
+   "title": "Validator-list quorum is 67% in postfiatd, 80% in rippled"
+  },
+  {
+   "excerpt": "E03",
+   "id": "R-05",
+   "reference": {
+    "anchor": "postFixAmendmentMajorityCalcThreshold",
+    "end_line": 87,
+    "file": "include/xrpl/protocol/SystemParameters.h",
+    "repo": "rippled",
+    "start_line": 83
+   },
+   "source": {
+    "anchor": "postFixAmendmentMajorityCalcThreshold",
+    "end_line": 87,
+    "file": "include/xrpl/protocol/SystemParameters.h",
+    "start_line": 83
+   },
+   "status": "VERIFIED",
+   "title": "Post-fix amendment majority is 67/100 in postfiatd, 80/100 in rippled"
+  },
+  {
+   "excerpt": "E04",
+   "id": "R-06",
+   "reference": {
+    "anchor": "closeTotal",
+    "end_line": 728,
+    "file": "src/xrpld/app/consensus/RCLConsensus.cpp",
+    "repo": "rippled",
+    "start_line": 704
+   },
+   "source": {
+    "anchor": "medianCloseOffset",
+    "end_line": 728,
+    "file": "src/xrpld/app/consensus/RCLConsensus.cpp",
+    "start_line": 709
+   },
+   "status": "VERIFIED",
+   "title": "Close-time offset is a weighted median in postfiatd, an arithmetic mean in rippled"
+  },
+  {
+   "excerpt": "E05",
+   "id": "R-07",
+   "reference": {
+    "anchor": "closeTimeVotes",
+    "end_line": 1616,
+    "file": "src/xrpld/consensus/Consensus.h",
+    "repo": "rippled",
+    "start_line": 1605
+   },
+   "source": {
+    "anchor": "std::views::reverse",
+    "end_line": 1613,
+    "file": "src/xrpld/consensus/Consensus.h",
+    "start_line": 1602
+   },
+   "status": "VERIFIED",
+   "title": "Among close times tied for the most votes, the earliest wins in postfiatd and the latest wins in rippled"
+  },
+  {
+   "excerpt": "E06",
+   "id": "R-08",
+   "reference": {
+    "anchor": "80%",
+    "end_line": 1294,
+    "file": "src/xrpld/consensus/Consensus.h",
+    "repo": "rippled",
+    "start_line": 1283
+   },
+   "source": {
+    "anchor": "67%",
+    "end_line": 1294,
+    "file": "src/xrpld/consensus/Consensus.h",
+    "start_line": 1283
+   },
+   "status": "VERIFIED",
+   "title": "Pause-phase thresholds are 67/75/83/92% in postfiatd, 80/85/90/95% in rippled"
+  },
+  {
+   "excerpt": "E07",
+   "id": "R-09",
+   "reference": {
+    "anchor": "minCONSENSUS_PCT",
+    "end_line": 132,
+    "file": "src/xrpld/consensus/DisputedTx.h",
+    "repo": "rippled",
+    "start_line": 117
+   },
+   "source": {
+    "anchor": "minCONSENSUS_PCT",
+    "end_line": 132,
+    "file": "src/xrpld/consensus/DisputedTx.h",
+    "start_line": 117
+   },
+   "status": "VERIFIED",
+   "title": "The disputed-transaction stall test is identical in both: it is parameterized by minCONSENSUS_PCT, so only the constant differs"
+  },
+  {
+   "excerpt": "E08",
+   "id": "R-10",
+   "reference": {
+    "anchor": "checkSignature",
+    "end_line": 76,
+    "file": "include/xrpl/protocol/STValidation.h",
+    "repo": "rippled",
+    "start_line": 64
+   },
+   "source": {
+    "anchor": "DeserializeOptions",
+    "end_line": 92,
+    "file": "include/xrpl/protocol/STValidation.h",
+    "start_line": 59
+   },
+   "status": "VERIFIED",
+   "title": "Peer validations must arrive in canonical field order in postfiatd; rippled imposes no order requirement"
+  },
+  {
+   "excerpt": "E09",
+   "id": "R-11",
+   "reference": {
+    "anchor": "verifyDigest",
+    "end_line": 132,
+    "file": "src/libxrpl/protocol/STValidation.cpp",
+    "repo": "rippled",
+    "start_line": 120
+   },
+   "source": {
+    "anchor": "verifyDigest",
+    "end_line": 150,
+    "file": "src/libxrpl/protocol/STValidation.cpp",
+    "start_line": 123
+   },
+   "status": "VERIFIED",
+   "title": "Validation signature checking is exception-safe in postfiatd (a re-serialization throw reports the validation invalid); rippled lets the throw escape"
+  },
+  {
+   "excerpt": "E10",
+   "id": "R-12",
+   "reference": {
+    "anchor": "sfReserveIncrementDrops",
+    "end_line": 82,
+    "file": "src/libxrpl/protocol/STValidation.cpp",
+    "repo": "rippled",
+    "start_line": 75
+   },
+   "source": {
+    "anchor": "sfExclusionAdd",
+    "end_line": 88,
+    "file": "src/libxrpl/protocol/STValidation.cpp",
+    "start_line": 78
+   },
+   "status": "VERIFIED",
+   "title": "Validations carry exclusion fields sfExclusionAdd and sfExclusionRemove in postfiatd; rippled has no such fields"
+  },
+  {
+   "excerpt": "E11",
+   "id": "R-13",
+   "reference": {
+    "anchor": "isTrusted",
+    "end_line": 199,
+    "file": "src/xrpld/app/consensus/RCLValidations.cpp",
+    "repo": "rippled",
+    "start_line": 193
+   },
+   "source": {
+    "anchor": "recordVote",
+    "end_line": 226,
+    "file": "src/xrpld/app/consensus/RCLValidations.cpp",
+    "start_line": 193
+   },
+   "status": "VERIFIED",
+   "title": "Trusted validations are recorded as votes with the validation signing hash as proof in postfiatd; rippled records no vote"
+  },
+  {
+   "excerpt": "E12",
+   "id": "R-14",
+   "reference_absent": {
+    "file": "src/xrpld/app/consensus/RCLConsensus.cpp",
+    "pattern": "ValidatorVoteTracker",
+    "repo": "rippled"
+   },
+   "source": {
+    "anchor": "doVoting",
+    "end_line": 361,
+    "file": "src/xrpld/app/consensus/RCLConsensus.cpp",
+    "start_line": 353
+   },
+   "status": "VERIFIED",
+   "title": "ValidatorVoteTracker.doVoting runs for every ledger in postfiatd; rippled has no vote tracking"
+  },
+  {
+   "excerpt": "E13",
+   "id": "R-15",
+   "reference": {
+    "anchor": "invalid",
+    "end_line": 232,
+    "file": "src/xrpld/app/misc/Manifest.h",
+    "repo": "rippled",
+    "start_line": 226
+   },
+   "source": {
+    "anchor": "defaultMaxUntrustedManifests",
+    "end_line": 290,
+    "file": "src/xrpld/app/misc/Manifest.h",
+    "start_line": 246
+   },
+   "status": "VERIFIED",
+   "title": "Unlisted validator manifests are capped (default 1,000, oldest evicted) and revoked publisher manifests persist in postfiatd; rippled keeps manifests unbounded and drops revoked publishers on restart"
+  },
+  {
+   "excerpt": "E27",
+   "id": "R-16",
+   "reference": {
+    "anchor": "parentCloseTime",
+    "end_line": 320,
+    "file": "src/xrpld/app/tx/detail/Change.cpp",
+    "repo": "rippled",
+    "start_line": 314
+   },
+   "source": {
+    "anchor": "parentCloseTime",
+    "end_line": 350,
+    "file": "src/xrpld/app/tx/detail/Change.cpp",
+    "start_line": 344
+   },
+   "status": "VERIFIED",
+   "title": "An amendment majority is timestamped with the parent ledger close time in both implementations"
+  },
+  {
+   "excerpt": null,
+   "id": "R-17",
+   "source": null,
+   "status": "MODELLED",
+   "title": "A 67% quorum lets a network validate with fewer agreeing validators, so the tolerated Byzantine share rises from 20% to 33% of the UNL and the safe UNL-overlap margin narrows"
+  },
+  {
+   "excerpt": null,
+   "external": {
+    "quote": "As long as fewer than 20% of trusted validators are faulty, consensus can continue unimpeded; and confirming an invalid transaction would require over 80% of trusted validators to collude.",
+    "url": "https://xrpl.org/docs/concepts/consensus-protocol"
+   },
+   "id": "R-18",
+   "source": null,
+   "status": "SPECIFIED",
+   "title": "The XRP Ledger consensus protocol requires over 80% of trusted validators to collude to confirm an invalid transaction, and makes progress while fewer than 20% are faulty"
+  },
+  {
+   "excerpt": "E15",
+   "id": "R-19",
+   "reference": {
+    "anchor": "masterpassphrase",
+    "end_line": 186,
+    "file": "src/xrpld/app/ledger/Ledger.cpp",
+    "repo": "rippled",
+    "start_line": 180
+   },
+   "source": {
+    "anchor": "r4vhrMChCsaoFsBoCkRTRGUuc1njfr7bmA",
+    "end_line": 205,
+    "file": "src/xrpld/app/ledger/Ledger.cpp",
+    "start_line": 180
+   },
+   "status": "VERIFIED",
+   "title": "Networks 2025 and 2026 use the PostFiat genesis account r4vhrMChCsaoFsBoCkRTRGUuc1njfr7bmA; rippled derives the genesis account from masterpassphrase (rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh)"
+  },
+  {
+   "excerpt": "E17",
+   "id": "R-20",
+   "reference": {
+    "anchor": "XRP_LEDGER_EARLIEST_SEQ{32570u}",
+    "end_line": 76,
+    "file": "include/xrpl/protocol/SystemParameters.h",
+    "repo": "rippled",
+    "start_line": 70
+   },
+   "source": {
+    "anchor": "XRP_LEDGER_EARLIEST_SEQ{1u}",
+    "end_line": 76,
+    "file": "include/xrpl/protocol/SystemParameters.h",
+    "start_line": 70
+   },
+   "status": "VERIFIED",
+   "title": "The earliest ledger sequence is 1 in postfiatd and 32570 in rippled"
+  },
+  {
+   "excerpt": "E18",
+   "id": "R-21",
+   "reference": {
+    "anchor": "fetchNodeObject",
+    "end_line": 258,
+    "file": "src/xrpld/app/misc/SHAMapStoreImp.cpp",
+    "repo": "rippled",
+    "start_line": 248
+   },
+   "source": {
+    "anchor": "re-stored node missing",
+    "end_line": 280,
+    "file": "src/xrpld/app/misc/SHAMapStoreImp.cpp",
+    "start_line": 251
+   },
+   "status": "VERIFIED",
+   "title": "SHAMapStore copyNode rescues nodes missing from both backends by re-storing the in-memory body; rippled fetches and drops the result unchecked"
+  },
+  {
+   "excerpt": "E19",
+   "id": "R-22",
+   "reference_absent": {
+    "file": "src/xrpld/app/misc/SHAMapStoreImp.cpp",
+    "pattern": "RotationExposureGuard",
+    "repo": "rippled"
+   },
+   "source": {
+    "anchor": "RotationExposureGuard",
+    "end_line": 392,
+    "file": "src/xrpld/app/misc/SHAMapStoreImp.cpp",
+    "start_line": 371
+   },
+   "status": "VERIFIED",
+   "title": "Ledger rotation closes the getKeys exposure window with a rotation-in-flight guard in postfiatd; rippled has no such guard"
+  },
+  {
+   "excerpt": "E20",
+   "id": "R-23",
+   "reference": {
+    "anchor": "XRPL_ASSERT",
+    "end_line": 66,
+    "file": "src/xrpld/shamap/detail/SHAMapNodeID.cpp",
+    "repo": "rippled",
+    "start_line": 57
+   },
+   "source": {
+    "anchor": "depth_ > SHAMap::leafDepth",
+    "end_line": 75,
+    "file": "src/xrpld/shamap/detail/SHAMapNodeID.cpp",
+    "start_line": 57
+   },
+   "status": "VERIFIED",
+   "title": "SHAMap node IDs clamp out-of-range peer-supplied depths to the leaf depth in postfiatd; rippled asserts in debug builds and indexes out of range otherwise"
+  },
+  {
+   "excerpt": "E22",
+   "id": "R-24",
+   "reference": {
+    "anchor": "processProofPathResponse",
+    "end_line": 65,
+    "file": "src/xrpld/app/ledger/detail/LedgerReplayMsgHandler.h",
+    "repo": "rippled",
+    "start_line": 27
+   },
+   "source": {
+    "anchor": "ReplayMsgStatus",
+    "end_line": 80,
+    "file": "src/xrpld/app/ledger/detail/LedgerReplayMsgHandler.h",
+    "start_line": 27
+   },
+   "status": "VERIFIED",
+   "title": "Ledger-replay responses return a three-way status (Ok, BadData, Malformed) and charge feeMalformedData (2,000) in postfiatd; rippled returns a bool and charges nothing"
+  },
+  {
+   "excerpt": "E23",
+   "id": "R-25",
+   "reference": {
+    "anchor": "has_error",
+    "end_line": 120,
+    "file": "src/xrpld/app/ledger/detail/LedgerReplayMsgHandler.cpp",
+    "repo": "rippled",
+    "start_line": 103
+   },
+   "source": {
+    "anchor": "uint256::size()",
+    "end_line": 130,
+    "file": "src/xrpld/app/ledger/detail/LedgerReplayMsgHandler.cpp",
+    "start_line": 105
+   },
+   "status": "VERIFIED",
+   "title": "Ledger-replay responses are checked for wrong-size hash and key fields in postfiatd; rippled checks presence only"
+  },
+  {
+   "excerpt": "E24",
+   "id": "R-26",
+   "reference_absent": {
+    "file": "src/xrpld/app/ledger/detail/LedgerMaster.cpp",
+    "pattern": "ExclusionManager",
+    "repo": "rippled"
+   },
+   "source": {
+    "anchor": "ExclusionManager",
+    "end_line": 310,
+    "file": "src/xrpld/app/ledger/detail/LedgerMaster.cpp",
+    "start_line": 286
+   },
+   "status": "VERIFIED",
+   "title": "The exclusion-manager cache is rebuilt on the first validated ledger in postfiatd; rippled has no exclusion manager"
+  },
+  {
+   "excerpt": "E25",
+   "id": "R-27",
+   "reference": {
+    "anchor": "submitTransaction",
+    "end_line": 70,
+    "file": "src/xrpld/app/ledger/ConsensusTransSetSF.cpp",
+    "repo": "rippled",
+    "start_line": 64
+   },
+   "source": {
+    "anchor": "isPseudoTx",
+    "end_line": 85,
+    "file": "src/xrpld/app/ledger/ConsensusTransSetSF.cpp",
+    "start_line": 64
+   },
+   "status": "VERIFIED",
+   "title": "Pseudo-transactions arriving in a consensus transaction set are cached but never submitted for validation in postfiatd; rippled submits every transaction in the set"
+  },
+  {
+   "excerpt": "E43",
+   "id": "R-28",
+   "reference": {
+    "anchor": "namespace ripple",
+    "end_line": 32,
+    "file": "include/xrpl/protocol/STParsedJSON.h",
+    "repo": "rippled",
+    "start_line": 26
+   },
+   "source": {
+    "anchor": "maxSTParsedJSONArraySize",
+    "end_line": 34,
+    "file": "include/xrpl/protocol/STParsedJSON.h",
+    "start_line": 29
+   },
+   "status": "VERIFIED",
+   "title": "JSON arrays are capped at 512 elements per field and nesting at depth 64 in postfiatd; rippled caps depth only"
+  },
+  {
+   "excerpt": null,
+   "external": {
+    "quote": "The Validator Exclusion List system allows validators to exclude specific accounts from participating in the network. This is a consensus-based mechanism where an account is only excluded if a sufficient percentage of validators (67% by default) agree to exclude it.",
+    "url": "https://github.com/postfiatorg/postfiatd/blob/0085a1ff885d6a446369cf73a4430f75af22be55/docs/Exclusions.md"
+   },
+   "id": "R-29",
+   "source": null,
+   "status": "SPECIFIED",
+   "title": "The validator exclusion system excludes an account only when 67% of validators agree, by default, and supports static configuration plus signed remote lists"
+  },
+  {
+   "excerpt": null,
+   "id": "R-30",
+   "source": null,
+   "status": "UNTESTABLE",
+   "title": "Whether a mixed postfiatd/rippled network reaches consensus on a ledger containing ttVALIDATOR_VOTE transactions can only be settled by running both implementations together"
+  },
+  {
+   "excerpt": "E28",
+   "id": "R-31",
+   "reference_absent": {
+    "file": "include/xrpl/protocol/detail/transactions.macro",
+    "pattern": "ttVALIDATOR_VOTE",
+    "repo": "rippled"
+   },
+   "source": {
+    "anchor": "ttVALIDATOR_VOTE",
+    "end_line": 1150,
+    "file": "include/xrpl/protocol/detail/transactions.macro",
+    "start_line": 1131
+   },
+   "status": "VERIFIED",
+   "title": "ttVALIDATOR_VOTE (type 1501) is a system-generated pseudo-transaction in postfiatd; rippled has no such type"
+  },
+  {
+   "excerpt": "E29",
+   "id": "R-32",
+   "reference": {
+    "anchor": "Reserve 0x0084",
+    "end_line": 515,
+    "file": "include/xrpl/protocol/detail/ledger_entries.macro",
+    "repo": "rippled",
+    "start_line": 511
+   },
+   "source": {
+    "anchor": "ltVALIDATOR_VOTE_STATS",
+    "end_line": 530,
+    "file": "include/xrpl/protocol/detail/ledger_entries.macro",
+    "start_line": 510
+   },
+   "status": "VERIFIED",
+   "title": "ltVALIDATOR_VOTE_STATS (0x008A) tracks per-validator vote counts in postfiatd; rippled has no such ledger entry"
+  },
+  {
+   "excerpt": "E30",
+   "id": "R-33",
+   "reference_absent": {
+    "file": "src/xrpld/app/tx/detail/Change.cpp",
+    "pattern": "applyValidatorVote",
+    "repo": "rippled"
+   },
+   "source": {
+    "anchor": "applyValidatorVote",
+    "end_line": 560,
+    "file": "src/xrpld/app/tx/detail/Change.cpp",
+    "start_line": 548
+   },
+   "status": "VERIFIED",
+   "title": "Change::applyValidatorVote applies a validator vote to the ledger in postfiatd; rippled has no such function"
+  },
+  {
+   "excerpt": "E31",
+   "id": "R-34",
+   "reference": {
+    "anchor": "temBAD_SRC_ACCOUNT",
+    "end_line": 195,
+    "file": "src/xrpld/app/tx/detail/Transactor.cpp",
+    "repo": "rippled",
+    "start_line": 189
+   },
+   "source": {
+    "anchor": "isExcluded",
+    "end_line": 215,
+    "file": "src/xrpld/app/tx/detail/Transactor.cpp",
+    "start_line": 190
+   },
+   "status": "VERIFIED",
+   "title": "Transactor preflight1 rejects transactions from excluded senders (temBAD_SRC_ACCOUNT) and to excluded destinations (temINVALID_ACCOUNT_ID) in postfiatd; rippled has no exclusion check"
+  },
+  {
+   "excerpt": "E32",
+   "id": "R-35",
+   "reference_absent": {
+    "file": "include/xrpl/protocol/detail/sfields.macro",
+    "pattern": "sfExclusionAdd",
+    "repo": "rippled"
+   },
+   "source": {
+    "anchor": "sfExclusionAdd",
+    "end_line": 349,
+    "file": "include/xrpl/protocol/detail/sfields.macro",
+    "start_line": 348
+   },
+   "status": "VERIFIED",
+   "title": "Seven new serialized fields support voting and exclusion (sfVoteCount, sfValidationHash, sfValidatorPublicKey, sfExclusionAdd, sfExclusionRemove, sfExclusionEntry, sfExclusionList); rippled has none of them"
+  },
+  {
+   "excerpt": "E33",
+   "id": "R-36",
+   "reference_absent": {
+    "file": "include/xrpl/protocol/Protocol.h",
+    "pattern": "maxExclusionListSize",
+    "repo": "rippled"
+   },
+   "source": {
+    "anchor": "maxExclusionListSize",
+    "end_line": 238,
+    "file": "include/xrpl/protocol/Protocol.h",
+    "start_line": 236
+   },
+   "status": "VERIFIED",
+   "title": "An account exclusion list holds at most 100 addresses in postfiatd; rippled has no such limit or list"
+  },
+  {
+   "excerpt": "E34",
+   "id": "R-37",
+   "reference": {
+    "anchor": "TokenEscrow",
+    "end_line": 46,
+    "file": "include/xrpl/protocol/detail/features.macro",
+    "repo": "rippled",
+    "start_line": 42
+   },
+   "source": {
+    "anchor": "PF_AccountExclusion",
+    "end_line": 46,
+    "file": "include/xrpl/protocol/detail/features.macro",
+    "start_line": 45
+   },
+   "status": "VERIFIED",
+   "title": "Two new amendments exist in postfiatd: PF_AccountExclusion and PF_ValidatorVoteTracking; rippled has neither"
+  },
+  {
+   "excerpt": "E35",
+   "id": "R-38",
+   "reference": {
+    "anchor": "DefaultNo",
+    "end_line": 100,
+    "file": "include/xrpl/protocol/detail/features.macro",
+    "repo": "rippled",
+    "start_line": 42
+   },
+   "source": {
+    "anchor": "DefaultYes",
+    "end_line": 100,
+    "file": "include/xrpl/protocol/detail/features.macro",
+    "start_line": 47
+   },
+   "status": "VERIFIED",
+   "title": "36 amendments flipped from DefaultNo to DefaultYes in postfiatd, so a fresh network enables them by default where rippled does not"
+  },
+  {
+   "excerpt": "E36",
+   "id": "R-39",
+   "reference_absent": {
+    "file": "include/xrpl/basics/MathUtilities.h",
+    "pattern": "checkedAdd",
+    "repo": "rippled"
+   },
+   "source": {
+    "anchor": "checkedAdd",
+    "end_line": 60,
+    "file": "include/xrpl/basics/MathUtilities.h",
+    "start_line": 26
+   },
+   "status": "VERIFIED",
+   "title": "Ledger balance arithmetic uses overflow-checked add/subtract in postfiatd (checkedAdd/checkedSub, tecINTERNAL on overflow); rippled adds unchecked"
+  },
+  {
+   "excerpt": "E38",
+   "id": "R-40",
+   "reference_absent": {
+    "file": "src/xrpld/app/paths/detail/Steps.h",
+    "pattern": "checkedStepAdd",
+    "repo": "rippled"
+   },
+   "source": {
+    "anchor": "checkedStepAdd",
+    "end_line": 575,
+    "file": "src/xrpld/app/paths/detail/Steps.h",
+    "start_line": 526
+   },
+   "status": "VERIFIED",
+   "title": "Payment-strand sums that overflow end the strand as a dry path (tecPATH_DRY) in postfiatd; rippled accumulates unchecked"
+  },
+  {
+   "excerpt": "E39",
+   "id": "R-41",
+   "reference": {
+    "anchor": "drops_",
+    "end_line": 124,
+    "file": "src/xrpld/app/tx/detail/InvariantCheck.h",
+    "repo": "rippled",
+    "start_line": 121
+   },
+   "source": {
+    "anchor": "int128_t",
+    "end_line": 126,
+    "file": "src/xrpld/app/tx/detail/InvariantCheck.h",
+    "start_line": 121
+   },
+   "status": "VERIFIED",
+   "title": "The XRP-not-created invariant accumulator is 128-bit in postfiatd, so a total that would wrap a 64-bit accumulator is still caught; rippled uses 64-bit"
+  },
+  {
+   "excerpt": "E40",
+   "id": "R-42",
+   "reference": {
+    "anchor": "hasPrivilege",
+    "end_line": 1068,
+    "file": "src/xrpld/app/tx/detail/InvariantCheck.cpp",
+    "repo": "rippled",
+    "start_line": 1063
+   },
+   "source": {
+    "anchor": "ttVALIDATOR_VOTE",
+    "end_line": 1072,
+    "file": "src/xrpld/app/tx/detail/InvariantCheck.cpp",
+    "start_line": 1066
+   },
+   "status": "VERIFIED",
+   "title": "ttVALIDATOR_VOTE is a privileged transaction type in the account-creation invariant check in postfiatd; rippled has no such exception"
+  },
+  {
+   "excerpt": "E41",
+   "id": "R-43",
+   "reference": {
+    "anchor": "STObject::set",
+    "end_line": 250,
+    "file": "src/libxrpl/protocol/STObject.cpp",
+    "repo": "rippled",
+    "start_line": 233
+   },
+   "source": {
+    "anchor": "requireCanonicalOrder",
+    "end_line": 290,
+    "file": "src/libxrpl/protocol/STObject.cpp",
+    "start_line": 240
+   },
+   "status": "VERIFIED",
+   "title": "STObject deserialization can require canonical field order in postfiatd; rippled has no such option"
+  },
+  {
+   "excerpt": "E42",
+   "id": "R-44",
+   "reference": {
+    "anchor": "length <= 192",
+    "end_line": 248,
+    "file": "src/libxrpl/protocol/Serializer.cpp",
+    "repo": "rippled",
+    "start_line": 230
+   },
+   "source": {
+    "anchor": "len<0",
+    "end_line": 250,
+    "file": "src/libxrpl/protocol/Serializer.cpp",
+    "start_line": 230
+   },
+   "status": "VERIFIED",
+   "title": "Variable-length encoding rejects negative lengths and the decoder refuses lengths the encoder cannot write back in postfiatd; rippled accepts them"
+  },
+  {
+   "excerpt": null,
+   "id": "R-45",
+   "source": null,
+   "status": "MODELLED",
+   "title": "A validation carrying exclusion fields fails deserialization on a rippled peer (unknown field), so exclusion votes do not propagate to rippled nodes"
+  }
+ ],
+ "schema_version": 1
+}
