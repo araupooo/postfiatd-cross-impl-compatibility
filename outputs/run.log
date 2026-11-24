@@ -1,0 +1,10 @@
+# run.log — deterministic output digests (no timestamps, no absolute paths)
+# step extract_excerpts: pass
+# step cross_impl_model_config: pass
+# step simulator: pass
+# step probe: pass
+fb1d2e0b8a2e141fe6c74c9a4d586d95e4d7a2e7d003327f2f3059bba6f00879  outputs/derived/cross-impl-results.json
+a61f82e2d4b005a8e5f4cd3d650d2872e304fbbd6ac992ac66de34667cac4cc8  outputs/derived/probe-results.json
+b5b44e5567f9fc010094afb23a9d5a08007da541fe38206f8ac1af23197522d0  outputs/derived/run-summary.json
+f59ec1789650bd9f94fab178bec94dc4291377ee509968317028d6435cf4771c  outputs/derived/scenario-matrix.json
+5a3f63db90a308c51b4ab22da6d168f7c16b9c774c83c1f7a0657804c754946b  outputs/probe-run.log
