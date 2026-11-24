@@ -1,0 +1,93 @@
+name: verify
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Check out pinned postfiatd
+        run: |
+          PINNED="0085a1ff885d6a446369cf73a4430f75af22be55"
+          DEST="$HOME/workspace/postfiatd-pin-0085a1f"
+          mkdir -p "$HOME/workspace"
+          git init "$DEST"
+          git -C "$DEST" remote add origin https://github.com/postfiatorg/postfiatd.git
+          git -C "$DEST" fetch --depth 1 origin "$PINNED"
+          git -C "$DEST" checkout FETCH_HEAD
+          git -C "$DEST" rev-parse HEAD
+
+      - name: Check out pinned rippled 3.1.2
+        run: |
+          RIPPLED="3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c"
+          DEST="$HOME/workspace/rippled-3.1.2"
+          mkdir -p "$HOME/workspace"
+          git clone --depth 1 --branch 3.1.2 https://github.com/XRPLF/rippled.git "$DEST"
+          git -C "$DEST" rev-parse HEAD
+
+      - name: Verify shipped digests
+        run: bash scripts/verify_digests.sh
+
+      - name: Show simulator interface
+        run: python3 src/cross_impl_model.py --help
+
+      - name: Run full suite
+        run: bash scripts/run_all.sh
+
+      - name: Check run summary
+        run: |
+          python3 - <<'EOF'
+          import hashlib
+          import json
+          s = json.load(open("outputs/derived/run-summary.json"))
+          assert s["pinned_commit"] == "0085a1ff885d6a446369cf73a4430f75af22be55", s
+          assert s["rippled_commit"] == "3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c", s
+          assert s["rippled_tag"] == "3.1.2", s
+          assert s["scenario_count"] == 13, s
+          assert s["rule_count"] == 45, s
+          assert s["steps"]["cross_impl_model_config"] == "pass", s["steps"]
+          assert s["steps"]["simulator"] == "pass", s["steps"]
+          assert s["steps"]["probe"] == "pass", s["steps"]
+          for k, v in s["steps"].items():
+              assert v == "pass" or v.startswith("skipped"), (k, v)
+          m = json.load(open("run-manifest.json"))
+          assert m["pinned_commit"] == "0085a1ff885d6a446369cf73a4430f75af22be55", m
+          assert m["rippled_commit"] == "3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c", m
+          assert m["rippled_tag"] == "3.1.2", m
+          assert m["counts"]["scenarios"]["total"] == 13, m
+          assert m["counts"]["scenarios"]["runs"] == 18, m
+          assert m["counts"]["scenarios"]["matched"] == 5, m
+          assert m["counts"]["scenarios"]["diverged"] == 9, m
+          assert m["counts"]["scenarios"]["degraded"] == 2, m
+          assert m["counts"]["scenarios"]["incompatible"] == 2, m
+          assert m["counts"]["rules"]["total"] == 45, m
+          assert m["counts"]["findings"]["total"] == 12, m
+          assert m["counts"]["claims"]["total"] == 24, m
+          assert m["counts"]["risks"]["total"] == 14, m
+          assert m["counts"]["gaps"] == 8, m
+          assert m["verification"]["excerpts"] == 44, m
+          assert m["verification"]["source_files"] == 34, m
+          assert m["verification"]["reference_files"] == 27, m
+          assert m["probes"]["passed"] == m["probes"]["total"] == 12, m
+          assert len(m["reproductions"]) == 2, m
+          assert m["verify_digests_sha256"] is not None, m
+          h = hashlib.sha256()
+          with open("outputs/verify-digests.log", "rb") as fh:
+              for chunk in iter(lambda: fh.read(65536), b""):
+                  h.update(chunk)
+          assert m["verify_digests_sha256"] == h.hexdigest(), m
+          print("run-summary OK:", s["steps"])
+          EOF
+
+      - name: Verify regenerated digests
+        run: bash scripts/verify_digests.sh
