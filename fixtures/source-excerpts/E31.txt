@@ -1,0 +1,49 @@
+# Source excerpt E31 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55 vs rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c).
+# File: src/xrpld/app/tx/detail/Transactor.cpp, lines 190-215.
+# Line numbers verified with grep -n on local checkouts of the pinned commits.
+# Source file SHA-256: f68aed0f1eb6e592100bfcf3a7e5ef4e28c1e77ddc5cdcdc4dc3a7502fd625f4
+# Source file git blob SHA: fb84c40ff2e300e756bee1b4e3d3b995c44d343d
+# Source file size: 46576 bytes
+
+# --- src/xrpld/app/tx/detail/Transactor.cpp lines 190-215 ---
+        return temBAD_SRC_ACCOUNT;
+    }
+
+    // Check if the sender account is excluded by consensus
+    if (ctx.app.getExclusionManager().isExcluded(id))
+    {
+        JLOG(ctx.j.warn()) << "preflight1: sender account is excluded by consensus: "
+                          << toBase58(id);
+        return temBAD_SRC_ACCOUNT;
+    }
+
+    // Check if the destination account is excluded (if present)
+    if (ctx.tx.isFieldPresent(sfDestination))
+    {
+        auto const dest = ctx.tx.getAccountID(sfDestination);
+        if (ctx.app.getExclusionManager().isExcluded(dest))
+        {
+            JLOG(ctx.j.warn()) << "preflight1: destination account is excluded by consensus: "
+                              << toBase58(dest);
+            return temINVALID_ACCOUNT_ID;
+        }
+    }
+
+    // No point in going any further if the transaction fee is malformed.
+    auto const fee = ctx.tx.getFieldAmount(sfFee);
+    if (!fee.native() || fee.negative() || !isLegalAmount(fee.xrp()))
+
+# --- rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c) ---
+# File: src/xrpld/app/tx/detail/Transactor.cpp, lines 189-195.
+# Source file SHA-256: 2684f0cceda6d5c3c863af98e947b9964bb9a534caa3ba9a0c36fbc119c48858
+# Source file git blob SHA: fdc0c48cef7b955f09c545255fc49a8837c4ed88
+# Source file size: 45788 bytes
+
+# --- src/xrpld/app/tx/detail/Transactor.cpp lines 189-195 ---
+        return temBAD_SRC_ACCOUNT;
+    }
+
+    // No point in going any further if the transaction fee is malformed.
+    auto const fee = ctx.tx.getFieldAmount(sfFee);
+    if (!fee.native() || fee.negative() || !isLegalAmount(fee.xrp()))
+    {

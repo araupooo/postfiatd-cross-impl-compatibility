@@ -1,0 +1,30 @@
+# Source excerpt E27 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55 vs rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c).
+# File: src/xrpld/app/tx/detail/Change.cpp, lines 344-350.
+# Line numbers verified with grep -n on local checkouts of the pinned commits.
+# Source file SHA-256: 0adcc813ae9cf1d915d77e45b5e2c7e8f780b44a2daea91ef3a06f87706a0150
+# Source file git blob SHA: 9079934b0434c4a43e3979e0d257b29962d1c132
+# Source file size: 25990 bytes
+
+# --- src/xrpld/app/tx/detail/Change.cpp lines 344-350 ---
+        auto& entry = newMajorities.back();
+        entry[sfAmendment] = amendment;
+        entry[sfCloseTime] =
+            view().parentCloseTime().time_since_epoch().count();
+
+        if (!ctx_.app.getAmendmentTable().isSupported(amendment))
+        {
+
+# --- rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c) ---
+# File: src/xrpld/app/tx/detail/Change.cpp, lines 314-320.
+# Source file SHA-256: 8d60d42c9c662b2aae3a8890d31586508058999b7fc0cab56a3ec688c04a1fe6
+# Source file git blob SHA: f78eaf0f614ba52681f41472e54aa72d4171adf3
+# Source file size: 16547 bytes
+
+# --- src/xrpld/app/tx/detail/Change.cpp lines 314-320 ---
+        auto& entry = newMajorities.back();
+        entry[sfAmendment] = amendment;
+        entry[sfCloseTime] =
+            view().parentCloseTime().time_since_epoch().count();
+
+        if (!ctx_.app.getAmendmentTable().isSupported(amendment))
+        {

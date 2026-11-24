@@ -1,0 +1,45 @@
+# Source excerpt E25 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55 vs rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c).
+# File: src/xrpld/app/ledger/ConsensusTransSetSF.cpp, lines 64-85.
+# Line numbers verified with grep -n on local checkouts of the pinned commits.
+# Source file SHA-256: 037ec493ed5d5d24b53d65a061b244609044a4270f37a6f251847ebab9061148
+# Source file git blob SHA: e8a4f47bfed0038f87d3cb4cd2bbf61be08e29ad
+# Source file size: 4309 bytes
+
+# --- src/xrpld/app/ledger/ConsensusTransSetSF.cpp lines 64-85 ---
+            XRPL_ASSERT(
+                stx->getTransactionID() == nodeHash.as_uint256(),
+                "ripple::ConsensusTransSetSF::gotNode : transaction hash "
+                "match");
+
+            // Pseudo-transactions are system-generated with no signatures.
+            // Cache them but don't submit for validation.
+            if (isPseudoTx(*stx))
+            {
+                JLOG(j_.debug())
+                    << "Caching pseudo-transaction from consensus tx set: "
+                    << stx->getTransactionID();
+                std::string reason;
+                auto tx = std::make_shared<Transaction>(stx, reason, app_);
+                if (tx->getStatus() == NEW)
+                    app_.getMasterTransaction().canonicalize(&tx);
+                return;
+            }
+
+            auto const pap = &app_;
+            app_.getJobQueue().addJob(jtTRANSACTION, "TXS->TXN", [pap, stx]() {
+                pap->getOPs().submitTransaction(stx);
+
+# --- rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c) ---
+# File: src/xrpld/app/ledger/ConsensusTransSetSF.cpp, lines 64-70.
+# Source file SHA-256: 6e4c012f1241e59414c2740c1618e243773419b380500c45a6ae8cd1e8882ed9
+# Source file git blob SHA: e62426b7201ff5911caa75d999c05fe73e57a1e8
+# Source file size: 3674 bytes
+
+# --- src/xrpld/app/ledger/ConsensusTransSetSF.cpp lines 64-70 ---
+                stx->getTransactionID() == nodeHash.as_uint256(),
+                "ripple::ConsensusTransSetSF::gotNode : transaction hash "
+                "match");
+            auto const pap = &app_;
+            app_.getJobQueue().addJob(jtTRANSACTION, "TXS->TXN", [pap, stx]() {
+                pap->getOPs().submitTransaction(stx);
+            });

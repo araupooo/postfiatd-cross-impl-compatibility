@@ -1,0 +1,60 @@
+# Source excerpt E23 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55 vs rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c).
+# File: src/xrpld/app/ledger/detail/LedgerReplayMsgHandler.cpp, lines 105-130.
+# Line numbers verified with grep -n on local checkouts of the pinned commits.
+# Source file SHA-256: 6c8f72cfcb08d12bfadc60a8d86f23b1ea5b2d6fd8fc758a35235ae6d96dec5a
+# Source file git blob SHA: e78c49c26df44889f5b8d252b002f0f13f8477c0
+# Source file size: 11859 bytes
+
+# --- src/xrpld/app/ledger/detail/LedgerReplayMsgHandler.cpp lines 105-130 ---
+    return reply;
+}
+
+ReplayMsgStatus
+LedgerReplayMsgHandler::processProofPathResponse(
+    std::shared_ptr<protocol::TMProofPathResponse> const& msg)
+{
+    protocol::TMProofPathResponse const& reply = *msg;
+    if (reply.has_error())
+    {
+        JLOG(journal_.debug()) << "ProofPathResponse: peer reported error";
+        return ReplayMsgStatus::BadData;
+    }
+    if (!reply.has_key() || !reply.has_ledgerhash() || !reply.has_type() ||
+        !reply.has_ledgerheader() || reply.path_size() == 0 ||
+        reply.ledgerhash().size() != uint256::size() ||
+        reply.key().size() != uint256::size())
+    {
+        JLOG(journal_.debug())
+            << "ProofPathResponse: malformed (missing or wrong-size fields)";
+        return ReplayMsgStatus::Malformed;
+    }
+
+    if (reply.type() != protocol::lmACCOUNT_STATE)
+    {
+        JLOG(journal_.debug())
+
+# --- rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c) ---
+# File: src/xrpld/app/ledger/detail/LedgerReplayMsgHandler.cpp, lines 103-120.
+# Source file SHA-256: ce355df60829e465d73c9e74ab8dea4d99820aac0268eccdc127bbe2a7b94f38
+# Source file git blob SHA: 5bfad61bf4afe46f40b1fb1a15b6e627bc51f8ae
+# Source file size: 9911 bytes
+
+# --- src/xrpld/app/ledger/detail/LedgerReplayMsgHandler.cpp lines 103-120 ---
+    return reply;
+}
+
+bool
+LedgerReplayMsgHandler::processProofPathResponse(
+    std::shared_ptr<protocol::TMProofPathResponse> const& msg)
+{
+    protocol::TMProofPathResponse& reply = *msg;
+    if (reply.has_error() || !reply.has_key() || !reply.has_ledgerhash() ||
+        !reply.has_type() || !reply.has_ledgerheader() ||
+        reply.path_size() == 0)
+    {
+        JLOG(journal_.debug()) << "Bad message: Error reply";
+        return false;
+    }
+
+    if (reply.type() != protocol::lmACCOUNT_STATE)
+    {

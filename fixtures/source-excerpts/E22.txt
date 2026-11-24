@@ -1,0 +1,109 @@
+# Source excerpt E22 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55 vs rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c).
+# File: src/xrpld/app/ledger/detail/LedgerReplayMsgHandler.h, lines 27-80.
+# Line numbers verified with grep -n on local checkouts of the pinned commits.
+# Source file SHA-256: 6fb29d8e292ae476d8fe38732cc2756c1af2ce8d16548f32497461f942a823e9
+# Source file git blob SHA: 0d23cfc15364f6fe326ffbccd24c18cb7ecb7cc8
+# Source file size: 3057 bytes
+
+# --- src/xrpld/app/ledger/detail/LedgerReplayMsgHandler.h lines 27-80 ---
+class Application;
+class LedgerReplayer;
+
+/** Outcome of processing an incoming ledger-replay response. */
+enum class ReplayMsgStatus {
+    /// Accepted.
+    Ok,
+    /// Peer reported has_error(): a legitimate "cannot fulfill" signal.
+    BadData,
+    /// Protocol-level violation; no honest peer would produce this.
+    Malformed,
+};
+
+class LedgerReplayMsgHandler final
+{
+public:
+    LedgerReplayMsgHandler(Application& app, LedgerReplayer& replayer);
+    ~LedgerReplayMsgHandler() = default;
+
+    /**
+     * Process TMProofPathRequest and return TMProofPathResponse
+     * @note check has_error() and error() of the response for error
+     * @return TMProofPathResponse with the proof path, or with error() set if
+     *         the request cannot be fulfilled
+     */
+    protocol::TMProofPathResponse
+    processProofPathRequest(
+        std::shared_ptr<protocol::TMProofPathRequest> const& msg);
+
+    /**
+     * Process TMProofPathResponse
+     */
+    ReplayMsgStatus
+    processProofPathResponse(
+        std::shared_ptr<protocol::TMProofPathResponse> const& msg);
+
+    /**
+     * Process TMReplayDeltaRequest and return TMReplayDeltaResponse
+     * @note check has_error() and error() of the response for error
+     * @return TMReplayDeltaResponse with the ledger delta, or with error() set
+     *         if the request cannot be fulfilled
+     */
+    protocol::TMReplayDeltaResponse
+    processReplayDeltaRequest(
+        std::shared_ptr<protocol::TMReplayDeltaRequest> const& msg);
+
+    /**
+     * Process TMReplayDeltaResponse
+     */
+    ReplayMsgStatus
+    processReplayDeltaResponse(
+        std::shared_ptr<protocol::TMReplayDeltaResponse> const& msg);
+
+private:
+
+# --- rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c) ---
+# File: src/xrpld/app/ledger/detail/LedgerReplayMsgHandler.h, lines 27-65.
+# Source file SHA-256: a182e53fb1d90daee233b4e5dc355d62eb56ded811cc4f9b6a1344636caea322
+# Source file git blob SHA: 151a21b9563fa092a3ae5bf3b87487dee4e6f146
+# Source file size: 2691 bytes
+
+# --- src/xrpld/app/ledger/detail/LedgerReplayMsgHandler.h lines 27-65 ---
+class Application;
+class LedgerReplayer;
+
+class LedgerReplayMsgHandler final
+{
+public:
+    LedgerReplayMsgHandler(Application& app, LedgerReplayer& replayer);
+    ~LedgerReplayMsgHandler() = default;
+
+    /**
+     * Process TMProofPathRequest and return TMProofPathResponse
+     * @note check has_error() and error() of the response for error
+     */
+    protocol::TMProofPathResponse
+    processProofPathRequest(
+        std::shared_ptr<protocol::TMProofPathRequest> const& msg);
+
+    /**
+     * Process TMProofPathResponse
+     * @return false if the response message has bad format or bad data;
+     *         true otherwise
+     */
+    bool
+    processProofPathResponse(
+        std::shared_ptr<protocol::TMProofPathResponse> const& msg);
+
+    /**
+     * Process TMReplayDeltaRequest and return TMReplayDeltaResponse
+     * @note check has_error() and error() of the response for error
+     */
+    protocol::TMReplayDeltaResponse
+    processReplayDeltaRequest(
+        std::shared_ptr<protocol::TMReplayDeltaRequest> const& msg);
+
+    /**
+     * Process TMReplayDeltaResponse
+     * @return false if the response message has bad format or bad data;
+     *         true otherwise
+     */

@@ -1,0 +1,42 @@
+# Source excerpt E29 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55 vs rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c).
+# File: include/xrpl/protocol/detail/ledger_entries.macro, lines 510-530.
+# Line numbers verified with grep -n on local checkouts of the pinned commits.
+# Source file SHA-256: 26fd13beaaed3b071671dd21c5350fdc8655c18282c4e1cb8ba2daf210fcc53b
+# Source file git blob SHA: ba9a2e6d0ed19113b580f8a603d7f6082f65269f
+# Source file size: 24140 bytes
+
+# --- include/xrpl/protocol/detail/ledger_entries.macro lines 510-530 ---
+    // no SharesTotal ever (use MPTIssuance.sfOutstandingAmount)
+    // no PermissionedDomainID ever (use MPTIssuance.sfDomainID)
+}))
+
+/** A ledger object which tracks validator voting statistics.
+   
+    Each validator account has an associated ValidatorVoteStats object
+    that tracks their total vote count.
+    
+    \sa keylet::validatorVoteStats
+ */
+LEDGER_ENTRY(ltVALIDATOR_VOTE_STATS, 0x008A, ValidatorVoteStats, validator_vote_stats, ({
+    {sfAccount,              soeREQUIRED},
+    {sfVoteCount,            soeREQUIRED},
+    {sfOwnerNode,            soeREQUIRED},
+    {sfPreviousTxnID,        soeREQUIRED},
+    {sfPreviousTxnLgrSeq,    soeREQUIRED},
+}))
+
+/** Reserved: 0x0084 (ltVAULT), 0x0085-0x0087 for future Vault-related objects. */
+
+
+# --- rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c) ---
+# File: include/xrpl/protocol/detail/ledger_entries.macro, lines 511-515.
+# Source file SHA-256: 69deb7074ced5766b0a0f2efdd055b2952234a6baaa4c2ee188d3b81443a8189
+# Source file git blob SHA: 3e17f33c24d878ee5f66cb2c7ee10863dae36761
+# Source file size: 23546 bytes
+
+# --- include/xrpl/protocol/detail/ledger_entries.macro lines 511-515 ---
+}))
+
+/** Reserve 0x0084-0x0087 for future Vault-related objects. */
+
+/** A ledger object representing a loan broker

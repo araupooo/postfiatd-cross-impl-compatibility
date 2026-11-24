@@ -1,0 +1,24 @@
+# Source excerpt E26 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55 vs rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c).
+# File: src/xrpld/app/main/Application.cpp, lines 1323-1335.
+# Line numbers verified with grep -n on local checkouts of the pinned commits.
+# Source file SHA-256: ce51509895eb4f27d42dd0d86fb49df0806301810867c383d4836405da2a7d65
+# Source file git blob SHA: e6ca17172f5213cc5e7c51df9a546a587f62e607
+# Source file size: 68679 bytes
+
+# --- src/xrpld/app/main/Application.cpp lines 1323-1335 ---
+        //Load all ledgers that are present in the db
+        if (startUp == Config::LOAD || config_->START_LEDGER.empty()) {
+            auto lastLedger = getLastFullLedger();
+            if (lastLedger) {
+                for (uint32_t i = 1; i < lastLedger->info().seq; i++) {
+                    auto ledger_info = getRelationalDatabase().getLedgerInfoByIndex(i);
+                    if (ledger_info)
+                        m_ledgerMaster->setLedgerRangePresent(
+                            i, i);
+                }
+            }
+        }
+
+
+# --- rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c) ---
+# No corresponding code in rippled 3.1.2: grep for 'Load all ledgers that are present in the db' in src/xrpld/app/main/Application.cpp returns 0 hits.

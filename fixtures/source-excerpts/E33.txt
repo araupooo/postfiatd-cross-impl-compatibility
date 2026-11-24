@@ -1,0 +1,14 @@
+# Source excerpt E33 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55 vs rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c).
+# File: include/xrpl/protocol/Protocol.h, lines 236-238.
+# Line numbers verified with grep -n on local checkouts of the pinned commits.
+# Source file SHA-256: b0210140d820ed3308160979ba2f4be290bc034a186bb39ff3b638bb65a3b2c8
+# Source file git blob SHA: b140390fc712ca00902db7248cfcc928e9cd32cf
+# Source file size: 11615 bytes
+
+# --- include/xrpl/protocol/Protocol.h lines 236-238 ---
+
+/** The maximum number of addresses in an account exclusion list */
+std::size_t constexpr maxExclusionListSize = 100;
+
+# --- rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c) ---
+# No corresponding code in rippled 3.1.2: grep for 'maxExclusionListSize' in include/xrpl/protocol/Protocol.h returns 0 hits.

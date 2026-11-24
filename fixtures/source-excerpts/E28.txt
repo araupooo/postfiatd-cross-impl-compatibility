@@ -1,0 +1,31 @@
+# Source excerpt E28 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55 vs rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c).
+# File: include/xrpl/protocol/detail/transactions.macro, lines 1131-1150.
+# Line numbers verified with grep -n on local checkouts of the pinned commits.
+# Source file SHA-256: 752d156f094460e74ae234c47c5323adaaafe6a9f36b6c9a00ae3753d6a18c49
+# Source file git blob SHA: 4ed5336f3dddf4e3a962979ae6353277d750be15
+# Source file size: 32505 bytes
+
+# --- include/xrpl/protocol/detail/transactions.macro lines 1131-1150 ---
+
+/** This system-generated transaction type records a validator's vote for a ledger.
+
+    This pseudo-transaction is automatically created when a validator on the UNL
+    votes for a ledger. The transaction is included in the subsequent ledger (N+1)
+    and increments the validator's total vote count in the ledger state.
+ */
+TRANSACTION(ttVALIDATOR_VOTE, 1501, ValidatorVote,
+    Delegation::notDelegatable,
+    uint256{},
+    noPriv,
+    ({
+    {sfLedgerSequence, soeREQUIRED},
+    {sfLedgerHash, soeREQUIRED},
+    {sfValidatorPublicKey, soeREQUIRED},
+    {sfValidationHash, soeREQUIRED},
+    {sfCloseTime, soeOPTIONAL},
+    {sfExclusionAdd, soeOPTIONAL},
+    {sfExclusionRemove, soeOPTIONAL},
+}))
+
+# --- rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c) ---
+# No corresponding code in rippled 3.1.2: grep for 'ttVALIDATOR_VOTE' in include/xrpl/protocol/detail/transactions.macro returns 0 hits.
