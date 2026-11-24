@@ -1,0 +1,63 @@
+# Source excerpt E08 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55 vs rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c).
+# File: include/xrpl/protocol/STValidation.h, lines 59-92.
+# Line numbers verified with grep -n on local checkouts of the pinned commits.
+# Source file SHA-256: dd1b472baa2be7c191597906ea4eadda8e2d4b8513c2ef0b5ec71b2734c92033
+# Source file git blob SHA: 27a18f8dcd6e0cf11a0c6c83e7e66ce860767fe4
+# Source file size: 9257 bytes
+
+# --- include/xrpl/protocol/STValidation.h lines 59-92 ---
+    NetClock::time_point seenTime_ = {};
+
+public:
+    /** Options controlling deserialization of a STValidation.
+
+        checkSignature: whether to verify the data was signed properly.
+        requireCanonicalOrder: whether to require the fields to be in
+        canonical order. Peer input must require it, so that a re-encoded
+        copy of a validation cannot bypass the relay suppression key.
+    */
+    struct DeserializeOptions
+    {
+        bool checkSignature;
+        bool requireCanonicalOrder;
+    };
+
+    /** Construct a STValidation from a peer from serialized data.
+
+        @param sit Iterator over serialized data
+        @param lookupNodeID Invocable with signature
+                               NodeID(PublicKey const&)
+                            used to find the Node ID based on the public key
+                            that signed the validation. For manifest based
+                            validators, this should be the NodeID of the master
+                            public key.
+        @param options Options controlling deserialization
+
+        @note Throws if the object is not valid
+    */
+    template <class LookupNodeID>
+    STValidation(
+        SerialIter& sit,
+        LookupNodeID&& lookupNodeID,
+        DeserializeOptions options);
+
+# --- rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c) ---
+# File: include/xrpl/protocol/STValidation.h, lines 64-76.
+# Source file SHA-256: 9ce4b20eb75fd5d93ac3611ad2a9d846d7b3c21043ab85ba61f54819b44ea47a
+# Source file git blob SHA: 991922514da802ddd61d2a64f0594a9a33de8f8b
+# Source file size: 8428 bytes
+
+# --- include/xrpl/protocol/STValidation.h lines 64-76 ---
+        @param sit Iterator over serialized data
+        @param lookupNodeID Invocable with signature
+                               NodeID(PublicKey const&)
+                            used to find the Node ID based on the public key
+                            that signed the validation. For manifest based
+                            validators, this should be the NodeID of the master
+                            public key.
+        @param checkSignature Whether to verify the data was signed properly
+
+        @note Throws if the object is not valid
+    */
+    template <class LookupNodeID>
+    STValidation(

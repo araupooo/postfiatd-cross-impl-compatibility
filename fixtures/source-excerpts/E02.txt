@@ -1,0 +1,24 @@
+# Source excerpt E02 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55 vs rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c).
+# File: src/xrpld/app/misc/detail/ValidatorList.cpp, lines 1897-1900.
+# Line numbers verified with grep -n on local checkouts of the pinned commits.
+# Source file SHA-256: a1499c9c0f43be56ea657b2940701a38898117fb0dbdf83cf481de65cad503d4
+# Source file git blob SHA: 861e2112c1f9355e03b9e42a7565cf6f37cf8c2e
+# Source file size: 72746 bytes
+
+# --- src/xrpld/app/misc/detail/ValidatorList.cpp lines 1897-1900 ---
+
+    // Use a 67% quorum to balance fork safety, liveness, and required UNL
+    // overlap. Note: Original XRPL uses 80%, but this fork uses 67% for
+    // devnet/testnet. For mainnet, this should be reverted to 80%.
+
+# --- rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c) ---
+# File: src/xrpld/app/misc/detail/ValidatorList.cpp, lines 1883-1886.
+# Source file SHA-256: 81419ce5e1855ee4f56dd67224895fe0a60ccb984cd1f26399557f5d4871431b
+# Source file git blob SHA: 92095b721112865ef2b38d35ff6b9c6c501de75f
+# Source file size: 72051 bytes
+
+# --- src/xrpld/app/misc/detail/ValidatorList.cpp lines 1883-1886 ---
+
+    // Use an 80% quorum to balance fork safety, liveness, and required UNL
+    // overlap.
+    //

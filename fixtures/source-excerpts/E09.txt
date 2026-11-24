@@ -1,0 +1,57 @@
+# Source excerpt E09 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55 vs rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c).
+# File: src/libxrpl/protocol/STValidation.cpp, lines 123-150.
+# Line numbers verified with grep -n on local checkouts of the pinned commits.
+# Source file SHA-256: bddbc44df78d7ae2e28319a9e47cf2fbcd24643163615f11bdc3b51a6590a12b
+# Source file git blob SHA: d2cb0586f261e9e06fa31f0da9c3fdc28cfc62ca
+# Source file size: 5493 bytes
+
+# --- src/libxrpl/protocol/STValidation.cpp lines 123-150 ---
+STValidation::isValid() const noexcept
+{
+    if (!valid_)
+    {
+        XRPL_ASSERT(
+            publicKeyType(getSignerPublic()) == KeyType::secp256k1,
+            "ripple::STValidation::isValid : valid key type");
+
+        // Computing the signing hash re-serializes the fields, which can
+        // throw. This function is noexcept, so a throw would end the process:
+        // report the validation as invalid instead and leave valid_ unset.
+        try
+        {
+            valid_ = verifyDigest(
+                getSignerPublic(),
+                getSigningHash(),
+                makeSlice(getFieldVL(sfSignature)),
+                getFlags() & vfFullyCanonicalSig);
+        }
+        catch (std::exception const& e)
+        {
+            // The log line itself allocates and formats, so it is guarded
+            // too: nothing may escape a noexcept function.
+            try
+            {
+                JLOG(debugLog().error())
+                    << "Cannot check the signature of the validation for "
+                       "ledger "
+
+# --- rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c) ---
+# File: src/libxrpl/protocol/STValidation.cpp, lines 120-132.
+# Source file SHA-256: 6d58af6fdcb8765c6098a83e3448d2ced2ea24574c1d5d3de632b0c3d4b0cf8b
+# Source file git blob SHA: 51246a1830b751ccbb8fdd3f332a524bc2ec70e1
+# Source file size: 4381 bytes
+
+# --- src/libxrpl/protocol/STValidation.cpp lines 120-132 ---
+    if (!valid_)
+    {
+        XRPL_ASSERT(
+            publicKeyType(getSignerPublic()) == KeyType::secp256k1,
+            "ripple::STValidation::isValid : valid key type");
+
+        valid_ = verifyDigest(
+            getSignerPublic(),
+            getSigningHash(),
+            makeSlice(getFieldVL(sfSignature)),
+            getFlags() & vfFullyCanonicalSig);
+    }
+

@@ -1,0 +1,40 @@
+# Source excerpt E06 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55 vs rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c).
+# File: src/xrpld/consensus/Consensus.h, lines 1283-1294.
+# Line numbers verified with grep -n on local checkouts of the pinned commits.
+# Source file SHA-256: c600a12673215a68513542bac16b89dccabff37f3652d79b8159860b00898dd8
+# Source file git blob SHA: 9ccc080857e2be382365dff5f349544b9907d9cf
+# Source file size: 65913 bytes
+
+# --- src/xrpld/consensus/Consensus.h lines 1283-1294 ---
+     *  The threshold for the 1st (0) phase is >= the minimum number that
+     *  can achieve quorum. Threshold for the maximum phase is 100%
+     *  of all trusted validators. Progression from min to max phase is
+     *  simply linear. If there are 5 phases (maxPausePhase = 4)
+     *  and minimum quorum is 67%, then thresholds progress as follows:
+     *  0: >=67%
+     *  1: >=75%
+     *  2: >=83%
+     *  3: >=92%
+     *  4: =100%
+     */
+    constexpr static std::size_t maxPausePhase = 4;
+
+# --- rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c) ---
+# File: src/xrpld/consensus/Consensus.h, lines 1283-1294.
+# Source file SHA-256: 2713220596ae3659451ba4ad4a0a7b9918d84f84e097527d35cbb04fd7cc60b3
+# Source file git blob SHA: df6cedccff13ce514c089e8dc4c9cf67057c227b
+# Source file size: 65409 bytes
+
+# --- src/xrpld/consensus/Consensus.h lines 1283-1294 ---
+     *  can achieve quorum. Threshold for the maximum phase is 100%
+     *  of all trusted validators. Progression from min to max phase is
+     *  simply linear. If there are 5 phases (maxPausePhase = 4)
+     *  and minimum quorum is 80%, then thresholds progress as follows:
+     *  0: >=80%
+     *  1: >=85%
+     *  2: >=90%
+     *  3: >=95%
+     *  4: =100%
+     */
+    constexpr static std::size_t maxPausePhase = 4;
+

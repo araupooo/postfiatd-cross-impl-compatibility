@@ -1,0 +1,40 @@
+# Source excerpt E05 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55 vs rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c).
+# File: src/xrpld/consensus/Consensus.h, lines 1602-1613.
+# Line numbers verified with grep -n on local checkouts of the pinned commits.
+# Source file SHA-256: c600a12673215a68513542bac16b89dccabff37f3652d79b8159860b00898dd8
+# Source file git blob SHA: 9ccc080857e2be382365dff5f349544b9907d9cf
+# Source file size: 65913 bytes
+
+# --- src/xrpld/consensus/Consensus.h lines 1602-1613 ---
+           << " thrC:" << threshConsensus;
+        JLOG(j_.info()) << ss.str();
+        CLOG(clog) << ss.str();
+
+        // Walk the votes highest-time first so that, among close times tied
+        // for the most votes, the earliest wins. The smaller value is the
+        // safer choice: without close-time consensus this round, the winner
+        // only updates our position for the next proposal, and a too-early
+        // time is bounded below by the prior ledger's close time. Only the
+        // tie-break changes; the bin with the most votes still wins.
+        for (auto const& [t, v] : std::views::reverse(closeTimeVotes))
+        {
+
+# --- rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c) ---
+# File: src/xrpld/consensus/Consensus.h, lines 1605-1616.
+# Source file SHA-256: 2713220596ae3659451ba4ad4a0a7b9918d84f84e097527d35cbb04fd7cc60b3
+# Source file git blob SHA: df6cedccff13ce514c089e8dc4c9cf67057c227b
+# Source file size: 65409 bytes
+
+# --- src/xrpld/consensus/Consensus.h lines 1605-1616 ---
+        for (auto const& [t, v] : closeTimeVotes)
+        {
+            JLOG(j_.debug())
+                << "CCTime: seq "
+                << static_cast<std::uint32_t>(previousLedger_.seq()) + 1 << ": "
+                << t.time_since_epoch().count() << " has " << v << ", "
+                << threshVote << " required";
+
+            if (v >= threshVote)
+            {
+                // A close time has enough votes for us to try to agree
+                consensusCloseTime = t;
