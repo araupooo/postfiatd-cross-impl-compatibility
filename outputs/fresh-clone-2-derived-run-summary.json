@@ -1,0 +1,14 @@
+{
+ "pack": "Cross-Implementation Compatibility: postfiatd vs rippled 3.1.2",
+ "pinned_commit": "0085a1ff885d6a446369cf73a4430f75af22be55",
+ "rippled_commit": "3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c",
+ "rippled_tag": "3.1.2",
+ "scenario_count": 13,
+ "rule_count": 45,
+ "steps": {
+  "extract_excerpts": "pass",
+  "cross_impl_model_config": "pass",
+  "simulator": "pass",
+  "probe": "pass"
+ }
+}

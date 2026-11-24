@@ -1,0 +1,292 @@
+{
+ "rows": [
+  {
+   "kind": "quorum",
+   "outcome": "diverged",
+   "postfiatd": {
+    "quorum_needed": 67,
+    "validates": true
+   },
+   "reason": "different_result_same_input",
+   "rippled": {
+    "quorum_needed": 80,
+    "validates": false
+   },
+   "rounds": 1,
+   "run": "A",
+   "scenario": "S-01"
+  },
+  {
+   "kind": "quorum",
+   "outcome": "matched",
+   "postfiatd": {
+    "quorum_needed": 67,
+    "validates": true
+   },
+   "reason": "same_result_both_implementations",
+   "rippled": {
+    "quorum_needed": 80,
+    "validates": true
+   },
+   "rounds": 1,
+   "run": "B",
+   "scenario": "S-01"
+  },
+  {
+   "kind": "amendment",
+   "outcome": "diverged",
+   "postfiatd": {
+    "enables": true,
+    "majority_pct": 67
+   },
+   "reason": "different_result_same_input",
+   "rippled": {
+    "enables": false,
+    "majority_pct": 80
+   },
+   "rounds": 1,
+   "run": "A",
+   "scenario": "S-02"
+  },
+  {
+   "kind": "amendment",
+   "outcome": "matched",
+   "postfiatd": {
+    "enables": true,
+    "majority_pct": 67
+   },
+   "reason": "same_result_both_implementations",
+   "rippled": {
+    "enables": true,
+    "majority_pct": 80
+   },
+   "rounds": 1,
+   "run": "B",
+   "scenario": "S-02"
+  },
+  {
+   "kind": "close_offset",
+   "outcome": "diverged",
+   "postfiatd": {
+    "method": "weighted_median",
+    "offset_seconds": 0
+   },
+   "reason": "different_result_same_input",
+   "rippled": {
+    "method": "arithmetic_mean",
+    "offset_seconds": 11
+   },
+   "rounds": 1,
+   "run": "A",
+   "scenario": "S-03"
+  },
+  {
+   "kind": "close_offset",
+   "outcome": "matched",
+   "postfiatd": {
+    "method": "weighted_median",
+    "offset_seconds": 0
+   },
+   "reason": "same_result_both_implementations",
+   "rippled": {
+    "method": "arithmetic_mean",
+    "offset_seconds": 0
+   },
+   "rounds": 1,
+   "run": "B",
+   "scenario": "S-03"
+  },
+  {
+   "kind": "tie_break",
+   "outcome": "diverged",
+   "postfiatd": {
+    "consensus_close_time": 1000,
+    "tie_break": "earliest_wins"
+   },
+   "reason": "different_result_same_input",
+   "rippled": {
+    "consensus_close_time": 1005,
+    "tie_break": "latest_wins"
+   },
+   "rounds": 1,
+   "run": "A",
+   "scenario": "S-04"
+  },
+  {
+   "kind": "pause_phase",
+   "outcome": "diverged",
+   "postfiatd": {
+    "pauses": false,
+    "phase0_threshold": 67
+   },
+   "reason": "different_result_same_input",
+   "rippled": {
+    "pauses": true,
+    "phase0_threshold": 80
+   },
+   "rounds": 1,
+   "run": "A",
+   "scenario": "S-05"
+  },
+  {
+   "kind": "pause_phase",
+   "outcome": "matched",
+   "postfiatd": {
+    "pauses": false,
+    "phase0_threshold": 67
+   },
+   "reason": "same_result_both_implementations",
+   "rippled": {
+    "pauses": false,
+    "phase0_threshold": 80
+   },
+   "rounds": 1,
+   "run": "B",
+   "scenario": "S-05"
+  },
+  {
+   "kind": "pseudo_tx",
+   "outcome": "incompatible",
+   "postfiatd": {
+    "result": "applied_creates_vote_stats",
+    "tx_type": "ttVALIDATOR_VOTE"
+   },
+   "reason": "unrepresentable_on_rippled",
+   "rippled": {
+    "result": "rejected_unknown_tx_type",
+    "tx_type": "ttVALIDATOR_VOTE"
+   },
+   "rounds": 1,
+   "run": "A",
+   "scenario": "S-06"
+  },
+  {
+   "kind": "exclusion",
+   "outcome": "diverged",
+   "postfiatd": {
+    "code": "temBAD_SRC_ACCOUNT",
+    "result": "rejected_at_preflight"
+   },
+   "reason": "different_result_same_input",
+   "rippled": {
+    "code": null,
+    "result": "applies_normally"
+   },
+   "rounds": 1,
+   "run": "A",
+   "scenario": "S-07"
+  },
+  {
+   "kind": "validation_fields",
+   "outcome": "incompatible",
+   "postfiatd": {
+    "result": "vote_recorded_with_exclusion"
+   },
+   "reason": "unrepresentable_on_rippled",
+   "rippled": {
+    "result": "deserialization_fails_unknown_field"
+   },
+   "rounds": 1,
+   "run": "A",
+   "scenario": "S-08"
+  },
+  {
+   "kind": "genesis",
+   "outcome": "diverged",
+   "postfiatd": {
+    "genesis_account": "r4vhrMChCsaoFsBoCkRTRGUuc1njfr7bmA"
+   },
+   "reason": "different_result_same_input",
+   "rippled": {
+    "genesis_account": "rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh"
+   },
+   "rounds": 1,
+   "run": "A",
+   "scenario": "S-09"
+  },
+  {
+   "kind": "genesis",
+   "outcome": "matched",
+   "postfiatd": {
+    "genesis_account": "rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh"
+   },
+   "reason": "same_result_both_implementations",
+   "rippled": {
+    "genesis_account": "rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh"
+   },
+   "rounds": 1,
+   "run": "B",
+   "scenario": "S-09"
+  },
+  {
+   "kind": "shamap_depth",
+   "outcome": "degraded",
+   "postfiatd": {
+    "effective_depth": 64,
+    "result": "clamped_to_leaf_depth"
+   },
+   "reason": "rippled_side_degrades",
+   "rippled": {
+    "effective_depth": 70,
+    "result": "unsafe_out_of_range"
+   },
+   "rounds": 1,
+   "run": "A",
+   "scenario": "S-10"
+  },
+  {
+   "kind": "payment_overflow",
+   "outcome": "diverged",
+   "postfiatd": {
+    "result": "tecPATH_DRY",
+    "sum": null
+   },
+   "reason": "different_result_same_input",
+   "rippled": {
+    "result": "wraps_silently",
+    "sum": -9223372036854775716
+   },
+   "rounds": 1,
+   "run": "A",
+   "scenario": "S-11"
+  },
+  {
+   "kind": "json_array",
+   "outcome": "diverged",
+   "postfiatd": {
+    "result": "rejected_array_too_big"
+   },
+   "reason": "different_result_same_input",
+   "rippled": {
+    "result": "accepted"
+   },
+   "rounds": 1,
+   "run": "A",
+   "scenario": "S-12"
+  },
+  {
+   "kind": "manifest_flood",
+   "outcome": "degraded",
+   "postfiatd": {
+    "cap": 1000,
+    "kept": 1000
+   },
+   "reason": "rippled_side_degrades",
+   "rippled": {
+    "cap": null,
+    "kept": 1500
+   },
+   "rounds": 1,
+   "run": "A",
+   "scenario": "S-13"
+  }
+ ],
+ "totals": {
+  "degraded": 2,
+  "diverged": 9,
+  "incompatible": 2,
+  "matched": 5,
+  "runs": 18,
+  "scenarios": 13
+ }
+}
