@@ -1,0 +1,41 @@
+# Source excerpt E14 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55 vs rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c).
+# File: src/xrpld/app/misc/ValidatorList.h, lines 570-585.
+# Line numbers verified with grep -n on local checkouts of the pinned commits.
+# Source file SHA-256: 574b96520e38999a3a3ecd9d326a39ad02f0a1511a72f95a7f86fc34e46f1496
+# Source file git blob SHA: b610dd81dc479895973ed48756e1803f93b3c95c
+# Source file size: 30156 bytes
+
+# --- src/xrpld/app/misc/ValidatorList.h lines 570-585 ---
+    /** Returns `true` if the master key is a configured list publisher,
+        whatever its current status. Used to persist publisher manifests:
+        a revoked publisher's revocation must survive a restart.
+
+        @param masterKey Publisher master public key
+
+        @par Thread Safety
+
+        May be called concurrently
+    */
+    bool
+    publisherConfigured(PublicKey const& masterKey) const;
+
+    /** This function returns the local validator public key
+     * or a std::nullopt
+
+
+# --- rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c) ---
+# File: src/xrpld/app/misc/ValidatorList.h, lines 564-572.
+# Source file SHA-256: c8772a7d2ab1f892c97eef7b29044224c2cb4b02ace22f5f915816d91b328780
+# Source file git blob SHA: 9a2018cbd4fff02e41069c0ce8b000cbd3f4809b
+# Source file size: 29750 bytes
+
+# --- src/xrpld/app/misc/ValidatorList.h lines 564-572 ---
+
+        May be called concurrently
+    */
+    bool
+    trustedPublisher(PublicKey const& identity) const;
+
+    /** This function returns the local validator public key
+     * or a std::nullopt
+

@@ -1,0 +1,30 @@
+# Source excerpt E17 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55 vs rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c).
+# File: include/xrpl/protocol/SystemParameters.h, lines 70-76.
+# Line numbers verified with grep -n on local checkouts of the pinned commits.
+# Source file SHA-256: 1ddb7af3e76708103ed5a43320fbeceeaa9b95ed06a436020790a12c55226fcc
+# Source file git blob SHA: 48202928205df69ede2398618420d5585d82b3c4
+# Source file size: 3242 bytes
+
+# --- include/xrpl/protocol/SystemParameters.h lines 70-76 ---
+
+/** The XRP ledger network's earliest allowed sequence */
+static constexpr std::uint32_t XRP_LEDGER_EARLIEST_SEQ{1u};
+
+/** The XRP Ledger mainnet's earliest ledger with a FeeSettings object. Only
+ * used in asserts and tests. */
+static constexpr std::uint32_t XRP_LEDGER_EARLIEST_FEES{562177u};
+
+# --- rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c) ---
+# File: include/xrpl/protocol/SystemParameters.h, lines 70-76.
+# Source file SHA-256: 01687a8640594eab00f14b4cd6a9587c863452c9da13216a3883600447fd8642
+# Source file git blob SHA: 164538ca92fa8b26af4243bf1cb5b4eccb0322aa
+# Source file size: 3231 bytes
+
+# --- include/xrpl/protocol/SystemParameters.h lines 70-76 ---
+
+/** The XRP ledger network's earliest allowed sequence */
+static constexpr std::uint32_t XRP_LEDGER_EARLIEST_SEQ{32570u};
+
+/** The XRP Ledger mainnet's earliest ledger with a FeeSettings object. Only
+ * used in asserts and tests. */
+static constexpr std::uint32_t XRP_LEDGER_EARLIEST_FEES{562177u};

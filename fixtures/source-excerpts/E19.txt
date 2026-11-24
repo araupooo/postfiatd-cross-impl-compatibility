@@ -1,0 +1,33 @@
+# Source excerpt E19 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55 vs rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c).
+# File: src/xrpld/app/misc/SHAMapStoreImp.cpp, lines 371-392.
+# Line numbers verified with grep -n on local checkouts of the pinned commits.
+# Source file SHA-256: 8bfa87fc6c2ac346c76737176d2461e3e9ad9e6d5779232d8606750b99157ca5
+# Source file git blob SHA: 080e0d016fd8122155c3bbb14bfdb379765a182d
+# Source file size: 23426 bytes
+
+# --- src/xrpld/app/misc/SHAMapStoreImp.cpp lines 371-392 ---
+            JLOG(journal_.debug()) << "copied ledger " << validatedSeq
+                                   << " nodecount " << nodeCount;
+
+            // Close the getKeys()->swap exposure window: from here until
+            // rotate() completes, an ordinary read served by the archive is
+            // copied forward into the writable backend, so a node fetched
+            // from the doomed archive cannot be left RAM-only when the
+            // archive is deleted. RAII so the early returns below (and any
+            // exception) also clear the flag.
+            struct RotationExposureGuard
+            {
+                NodeStore::DatabaseRotating& db;
+                ~RotationExposureGuard()
+                {
+                    db.setRotationInFlight(false);
+                }
+            };
+            RotationExposureGuard const rotationExposureGuard{*dbRotating_};
+            dbRotating_->setRotationInFlight(true);
+
+            JLOG(journal_.debug()) << "freshening caches";
+            freshenCaches();
+
+# --- rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c) ---
+# No corresponding code in rippled 3.1.2: grep for 'RotationExposureGuard' in src/xrpld/app/misc/SHAMapStoreImp.cpp returns 0 hits.

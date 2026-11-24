@@ -1,0 +1,68 @@
+# Source excerpt E13 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55 vs rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c).
+# File: src/xrpld/app/misc/Manifest.h, lines 246-290.
+# Line numbers verified with grep -n on local checkouts of the pinned commits.
+# Source file SHA-256: 3eaf20a71423cf609855273aa8fcb7708f18ed9bfd4a5cca3bf37aab334b6755
+# Source file git blob SHA: eb887b8166b45be76142eda2b66f6441935e087f
+# Source file size: 17676 bytes
+
+# --- src/xrpld/app/misc/Manifest.h lines 246-290 ---
+        case ManifestDisposition::badMasterKey:
+            return "badMasterKey";
+        case ManifestDisposition::badEphemeralKey:
+            return "badEphemeralKey";
+        case ManifestDisposition::invalid:
+            return "invalid";
+        case ManifestDisposition::untrustedCapacity:
+            return "untrustedCapacity";
+        default:
+            return "unknown";
+    }
+}
+
+/** Whether a manifest counts against the cache's untrusted bound.
+
+    Passed to `ManifestCache::applyManifest` without a default, so every
+    caller must choose. `capped` is the flood-resistant value for peer gossip;
+    only listed, configured, or database-loaded manifests use `uncapped`.
+*/
+enum class ManifestRateLimitCapPolicy : std::uint8_t {
+    /// Subject to the untrusted bound (unlisted peer gossip)
+    capped,
+
+    /// Bypasses the bound (listed, configured, or database-loaded)
+    uncapped
+};
+
+/** Default number of manifests from unlisted master keys a cache keeps.
+
+    Peer gossip for master keys that appear on no validator list goes into a
+    bounded set: once it is full, the oldest unlisted entry is evicted for
+    each new one, so a flood churns the set but can never grow the cache.
+    Listed keys are never bounded or evicted. Operators override the size with
+    `[overlay] max_untrusted_count`; it must stay well above the number of
+    validators the network may be asked to score, so candidates outside the
+    UNL stay visible to nodes.
+*/
+constexpr std::size_t defaultMaxUntrustedManifests = 1000;
+
+/** The untrusted manifest bound to use, given the optional config override. */
+constexpr std::size_t
+untrustedManifestCount(std::optional<std::size_t> const& configured)
+{
+    return configured.value_or(defaultMaxUntrustedManifests);
+}
+
+# --- rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c) ---
+# File: src/xrpld/app/misc/Manifest.h, lines 226-232.
+# Source file SHA-256: 55600518e0893140febe1261082e64af8459bc02ac2ea62675ac092f6996c142
+# Source file git blob SHA: 1b53fda77b5ee2215091ca6d1301dd06272dd433
+# Source file size: 13993 bytes
+
+# --- src/xrpld/app/misc/Manifest.h lines 226-232 ---
+    badEphemeralKey,
+
+    /// Timely, but invalid signature
+    invalid
+};
+
+inline std::string

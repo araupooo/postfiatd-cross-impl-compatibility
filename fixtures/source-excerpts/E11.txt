@@ -1,0 +1,57 @@
+# Source excerpt E11 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55 vs rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c).
+# File: src/xrpld/app/consensus/RCLValidations.cpp, lines 193-226.
+# Line numbers verified with grep -n on local checkouts of the pinned commits.
+# Source file SHA-256: cf96cc049a4050d61926c57af4e5021845ee0e0553ff25daf66354f800ccbd32
+# Source file git blob SHA: 669d69957da77a68bb5ace92a5e0ff789572be85
+# Source file size: 9726 bytes
+
+# --- src/xrpld/app/consensus/RCLValidations.cpp lines 193-226 ---
+    if (outcome == ValStatus::current)
+    {
+        if (val->isTrusted())
+        {
+            // Record the vote for PF_ValidatorVoteTracking amendment
+            // Use the validation's signing hash as proof of the vote
+
+            // Check for exclusion list changes in the validation
+            std::optional<AccountID> exclusionAdd;
+            std::optional<AccountID> exclusionRemove;
+
+            if (val->isFieldPresent(sfExclusionAdd))
+                exclusionAdd = val->getAccountID(sfExclusionAdd);
+            if (val->isFieldPresent(sfExclusionRemove))
+                exclusionRemove = val->getAccountID(sfExclusionRemove);
+
+            auto const keyForVote = masterKey.value_or(signingKey);
+            JLOG(app.journal("Validations").info())
+                << "RCLValidations: Recording vote with "
+                << (masterKey ? "master key: " : "signing key: ")
+                << toBase58(TokenType::NodePublic, keyForVote)
+                << " -> Account: " << toBase58(calcAccountID(keyForVote));
+
+            app.getValidatorVoteTracker().recordVote(
+                keyForVote,  // Use master key if available, otherwise signing key
+                hash,
+                seq,
+                val->getSigningHash(),  // Validation signing hash as proof
+                app.timeKeeper().closeTime(),
+                exclusionAdd,
+                exclusionRemove);
+            
+            if (bypassAccept == BypassAccept::yes)
+            {
+
+# --- rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c) ---
+# File: src/xrpld/app/consensus/RCLValidations.cpp, lines 193-199.
+# Source file SHA-256: 9f09c15e6b1281cc973746b49cfe3c85d3da8893e1d5e1ecf19387657bb73c1c
+# Source file git blob SHA: 5305c95357146dc0bf7cbfca8ce4d9c858623220
+# Source file size: 8353 bytes
+
+# --- src/xrpld/app/consensus/RCLValidations.cpp lines 193-199 ---
+    {
+        if (val->isTrusted())
+        {
+            if (bypassAccept == BypassAccept::yes)
+            {
+                XRPL_ASSERT(
+                    j, "ripple::handleNewValidation : journal is available");

@@ -1,0 +1,49 @@
+# Source excerpt E15 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55 vs rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c).
+# File: src/xrpld/app/ledger/Ledger.cpp, lines 180-205.
+# Line numbers verified with grep -n on local checkouts of the pinned commits.
+# Source file SHA-256: 8c56833ab46470050f355c06efec642ed4054209ffcb63084aca9da734f82516
+# Source file git blob SHA: 26552704258627756361a07e0c85a260ed229321
+# Source file size: 33022 bytes
+
+# --- src/xrpld/app/ledger/Ledger.cpp lines 180-205 ---
+    info_.drops = INITIAL_XRP;
+    info_.closeTimeResolution = ledgerGenesisTimeResolution;
+
+    // Select genesis account based on network type:
+    // - PostFiat production networks (mainnet=2026, testnet=2025) use the
+    //   PostFiat genesis account UNLESS running in standalone mode
+    // - All other networks (devnet, ai-devnet, standalone, unit tests):
+    //   derive from "masterpassphrase" (rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh)
+    AccountID id;
+    if (config.standalone())
+    {
+        auto const seed = generateSeed("masterpassphrase");
+        auto const keypair = generateKeyPair(KeyType::secp256k1, seed);
+        id = calcAccountID(keypair.first);
+    }
+    else if (config.NETWORK_ID == 2025 || config.NETWORK_ID == 2026)
+    {
+        // PostFiat production networks
+        id = *parseBase58<AccountID>("r4vhrMChCsaoFsBoCkRTRGUuc1njfr7bmA");
+    }
+    else
+    {
+        auto const seed = generateSeed("masterpassphrase");
+        auto const keypair = generateKeyPair(KeyType::secp256k1, seed);
+        id = calcAccountID(keypair.first);
+    }
+
+# --- rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c) ---
+# File: src/xrpld/app/ledger/Ledger.cpp, lines 180-186.
+# Source file SHA-256: bb88a76876b55c4cb079845957c3e8ec70e854e5ef33c1ab5fe534fe4845663f
+# Source file git blob SHA: 19aec6420c25d5143ff3071e9cadea5d8931c6ac
+# Source file size: 32190 bytes
+
+# --- src/xrpld/app/ledger/Ledger.cpp lines 180-186 ---
+    info_.drops = INITIAL_XRP;
+    info_.closeTimeResolution = ledgerGenesisTimeResolution;
+
+    static auto const id = calcAccountID(
+        generateKeyPair(KeyType::secp256k1, generateSeed("masterpassphrase"))
+            .first);
+    {

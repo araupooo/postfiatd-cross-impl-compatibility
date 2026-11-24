@@ -1,0 +1,35 @@
+# Source excerpt E10 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55 vs rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c).
+# File: src/libxrpl/protocol/STValidation.cpp, lines 78-88.
+# Line numbers verified with grep -n on local checkouts of the pinned commits.
+# Source file SHA-256: bddbc44df78d7ae2e28319a9e47cf2fbcd24643163615f11bdc3b51a6590a12b
+# Source file git blob SHA: d2cb0586f261e9e06fa31f0da9c3fdc28cfc62ca
+# Source file size: 5493 bytes
+
+# --- src/libxrpl/protocol/STValidation.cpp lines 78-88 ---
+        {sfServerVersion,       soeOPTIONAL},
+        // featureXRPFees
+        {sfBaseFeeDrops,          soeOPTIONAL},
+        {sfReserveBaseDrops,      soeOPTIONAL},
+        {sfReserveIncrementDrops, soeOPTIONAL},
+        // featurePF_AccountExclusion - validators can add/remove exclusions via validations
+        {sfExclusionAdd,          soeOPTIONAL},
+        {sfExclusionRemove,       soeOPTIONAL},
+    };
+    // clang-format on
+
+
+# --- rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c) ---
+# File: src/libxrpl/protocol/STValidation.cpp, lines 75-82.
+# Source file SHA-256: 6d58af6fdcb8765c6098a83e3448d2ced2ea24574c1d5d3de632b0c3d4b0cf8b
+# Source file git blob SHA: 51246a1830b751ccbb8fdd3f332a524bc2ec70e1
+# Source file size: 4381 bytes
+
+# --- src/libxrpl/protocol/STValidation.cpp lines 75-82 ---
+        {sfValidatedHash,       soeOPTIONAL},
+        {sfServerVersion,       soeOPTIONAL},
+        // featureXRPFees
+        {sfBaseFeeDrops,          soeOPTIONAL},
+        {sfReserveBaseDrops,      soeOPTIONAL},
+        {sfReserveIncrementDrops, soeOPTIONAL},
+    };
+    // clang-format on

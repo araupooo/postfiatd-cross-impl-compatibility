@@ -1,0 +1,57 @@
+# Source excerpt E18 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55 vs rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c).
+# File: src/xrpld/app/misc/SHAMapStoreImp.cpp, lines 251-280.
+# Line numbers verified with grep -n on local checkouts of the pinned commits.
+# Source file SHA-256: 8bfa87fc6c2ac346c76737176d2461e3e9ad9e6d5779232d8606750b99157ca5
+# Source file git blob SHA: 080e0d016fd8122155c3bbb14bfdb379765a182d
+# Source file size: 23426 bytes
+
+# --- src/xrpld/app/misc/SHAMapStoreImp.cpp lines 251-280 ---
+SHAMapStoreImp::copyNode(std::uint64_t& nodeCount, SHAMapTreeNode const& node)
+{
+    // Copy a single record from node to dbRotating_
+    auto obj = dbRotating_->fetchNodeObject(
+        node.getHash().as_uint256(),
+        0,
+        NodeStore::FetchType::synchronous,
+        true);
+    if (!obj)
+    {
+        XRPL_ASSERT(
+            node.cowid() == 0,
+            "ripple::SHAMapStoreImp::copyNode : rescued node must be clean");
+        // Reachable from the validated state map in memory, but present in
+        // neither backend: its only on-disk copy lived in a backend removed
+        // by an earlier rotation, and it was never rewritten because it is
+        // clean (cowid == 0, so flushDirty skips it). Persist the in-memory
+        // body directly into the writable backend so it survives this
+        // rotation instead of later surfacing as an unresolvable
+        // SHAMapMissingNode.
+        auto const hash = node.getHash().as_uint256();
+        Serializer s;
+        node.serializeWithPrefix(s);
+        dbRotating_->store(hotACCOUNT_NODE, std::move(s.modData()), hash, 0);
+        JLOG(journal_.warn())
+            << "copyNode: re-stored node missing from both backends, hash="
+            << hash << " type=" << static_cast<int>(node.getType());
+    }
+    if (!(++nodeCount % checkHealthInterval_))
+    {
+
+# --- rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c) ---
+# File: src/xrpld/app/misc/SHAMapStoreImp.cpp, lines 248-258.
+# Source file SHA-256: bd7c45570e5a174ed95a1bb1d754bf1e8b6909f5772cda2683c75afc2439236a
+# Source file git blob SHA: 52ea40cf94de0fe12913a6478d78fd0f861679ac
+# Source file size: 21493 bytes
+
+# --- src/xrpld/app/misc/SHAMapStoreImp.cpp lines 248-258 ---
+SHAMapStoreImp::copyNode(std::uint64_t& nodeCount, SHAMapTreeNode const& node)
+{
+    // Copy a single record from node to dbRotating_
+    dbRotating_->fetchNodeObject(
+        node.getHash().as_uint256(),
+        0,
+        NodeStore::FetchType::synchronous,
+        true);
+    if (!(++nodeCount % checkHealthInterval_))
+    {
+        if (healthWait() == stopping)

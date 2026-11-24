@@ -1,0 +1,74 @@
+# Source excerpt E21 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55 vs rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c).
+# File: src/xrpld/shamap/detail/SHAMapNodeID.cpp, lines 128-160.
+# Line numbers verified with grep -n on local checkouts of the pinned commits.
+# Source file SHA-256: 96617e035840ae8e1e5ade0212f3de895e18ab6a6a09b26d6f374227bcc7832f
+# Source file git blob SHA: 83a4534c3a185aafdaf0d91a2b5724dfb0a5921a
+# Source file size: 5826 bytes
+
+# --- src/xrpld/shamap/detail/SHAMapNodeID.cpp lines 128-160 ---
+            auto const id = uint256::fromVoid(data);
+
+            if (id == (id & depthMask(depth)))
+                ret.emplace(depth, id);
+        }
+    }
+
+    return ret;
+}
+
+[[nodiscard]] unsigned int
+selectBranch(SHAMapNodeID const& id, uint256 const& hash)
+{
+    XRPL_ASSERT(
+        id.getDepth() < SHAMap::leafDepth,
+        "ripple::selectBranch : depth below leaf depth");
+
+    // A depth-64 ID has no nibble left to select: depth / 2 would read one
+    // byte past the end of the 32-byte key. Callers must not ask, but clamp
+    // anyway so a wrong branch is the worst outcome.
+    auto const depth = std::min(id.getDepth(), SHAMap::leafDepth - 1u);
+    auto branch = static_cast<unsigned int>(*(hash.begin() + (depth / 2)));
+
+    if (depth & 1)
+        branch &= 0xf;
+    else
+        branch >>= 4;
+
+    XRPL_ASSERT(
+        branch < SHAMap::branchFactor, "ripple::selectBranch : maximum result");
+    return branch;
+}
+
+
+# --- rippled 3.1.2 (3ba3fcff4c4898a96a57838bb7c67a44a3d2ec5c) ---
+# File: src/xrpld/shamap/detail/SHAMapNodeID.cpp, lines 128-152.
+# Source file SHA-256: 96b866ec49336b2f90703f80e9cf38419f7258166fad6ed4eb11fcbb882584a8
+# Source file git blob SHA: efe4f959361c2d75f49375c5c54b0614eb435676
+# Source file size: 4734 bytes
+
+# --- src/xrpld/shamap/detail/SHAMapNodeID.cpp lines 128-152 ---
+[[nodiscard]] unsigned int
+selectBranch(SHAMapNodeID const& id, uint256 const& hash)
+{
+    auto const depth = id.getDepth();
+    auto branch = static_cast<unsigned int>(*(hash.begin() + (depth / 2)));
+
+    if (depth & 1)
+        branch &= 0xf;
+    else
+        branch >>= 4;
+
+    XRPL_ASSERT(
+        branch < SHAMap::branchFactor, "ripple::selectBranch : maximum result");
+    return branch;
+}
+
+SHAMapNodeID
+SHAMapNodeID::createID(int depth, uint256 const& key)
+{
+    XRPL_ASSERT(
+        (depth >= 0) && (depth < 65),
+        "ripple::SHAMapNodeID::createID : valid branch input");
+    return SHAMapNodeID(depth, key & depthMask(depth));
+}
+
