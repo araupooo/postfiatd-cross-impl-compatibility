@@ -78,7 +78,7 @@ jobs:
           assert m["verification"]["excerpts"] == 44, m
           assert m["verification"]["source_files"] == 34, m
           assert m["verification"]["reference_files"] == 27, m
-          assert m["probes"]["passed"] == m["probes"]["total"] == 12, m
+          assert m["probes"]["passed"] == m["probes"]["total"] == 13, m
           assert len(m["reproductions"]) == 2, m
           assert m["verify_digests_sha256"] is not None, m
           h = hashlib.sha256()
